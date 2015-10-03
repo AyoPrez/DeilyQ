@@ -4,42 +4,36 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewStub;
 import android.view.Window;
 
-import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.R;
+import com.ayoprez.login.SessionManager;
 import com.ayoprez.restfulservice.QuoteGet;
 import com.ayoprez.userProfile.ProfileScreen;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by AyoPrez on 24/05/15.
  */
-public class SavedQuotesScreen extends AbstractBaseMainActivity {
-
-    //Probar a poner el context en el Abstract
+public class SavedQuotesScreen extends AppCompatActivity {
 
     private Toolbar toolbar;
+    protected SessionManager sessionManager;
     protected Dialog loadDialog;
     private RecyclerView savedQuotesRecyclerView;
     private RecyclerView.Adapter recyclerViewAdapter;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
-
-    @Bind(R.id.viewStub_no_internet)
-    ViewStub viewStubNoInternet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +44,11 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
 
         EventBus.getDefault().register(this);
 
+        sessionManager = new SessionManager(this);
+
         initToolbar();
 
-        if(isNetworkAvailable()) {
-            getSavedQuotes(getUserId());
-        }else{
-            viewStubNoInternet.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        getSavedQuotes(getUserId());
     }
 
     @Override
@@ -116,6 +102,11 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         finish();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     protected int getUserId(){
         return Integer.valueOf(sessionManager.getUserDetails().get("id"));
     }
@@ -128,6 +119,5 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
     public void onEvent(ArrayList<SavedQuotes> savedQuotes){
         initRecyclerView(savedQuotes);
         cancelDialog();
-        EventBus.getDefault().unregister(this);
     }
 }

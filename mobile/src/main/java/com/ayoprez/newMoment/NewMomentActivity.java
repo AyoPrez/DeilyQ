@@ -3,21 +3,26 @@ package com.ayoprez.newMoment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
 
-public class NewMomentActivity extends AbstractBaseMainActivity{
+import java.util.Locale;
 
-	//Probar a poner el context en el Abstract
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+public class NewMomentActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
 	private Button B_Language, B_Topic, B_Time, B_Accept;
+	private Context ctx = this;
+	private String AppLanguage = Locale.getDefault().getDisplayLanguage().toString();
+
     private Context context;
 
 	@Override
@@ -38,7 +43,7 @@ public class NewMomentActivity extends AbstractBaseMainActivity{
 
 			@Override
 			public void onClick(View v) {
-				new Language(context);
+				new Language(ctx);
 			}		
 		});
 		
@@ -61,7 +66,7 @@ public class NewMomentActivity extends AbstractBaseMainActivity{
 		B_Accept.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				new Accept(context).Accept_Dialog(B_Language.getText().toString(),
+				new Accept(ctx).Accept_Dialog(AppLanguage, B_Language.getText().toString(), 
 						B_Topic.getText().toString(), B_Time.getText().toString());
 			}	
 		});
@@ -101,4 +106,8 @@ public class NewMomentActivity extends AbstractBaseMainActivity{
 		B_Time.setText(Text);
 	}
 
+	@Override
+	protected void attachBaseContext(Context newBase) {
+		super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+	}
 }

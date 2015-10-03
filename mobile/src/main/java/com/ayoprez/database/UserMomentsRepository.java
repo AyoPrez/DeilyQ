@@ -9,6 +9,7 @@ import de.greenrobot.dao.query.WhereCondition;
 import deilyquote.UserMoments;
 import deilyquote.UserMomentsDao;
 
+
 /**
  * Created by Ayoze on 29/01/15.
  */
@@ -21,6 +22,7 @@ public class UserMomentsRepository {
     public long getIdFromData(Context context, UserMoments userMoments){
         QueryBuilder qb = getUserMomentsDao(context).queryBuilder();
         qb.where(new WhereCondition.StringCondition("Time = '"+ userMoments.getTime() +"' " +
+//                "AND Level = '"+ userMoments.getLevel() +"' " +
                 "AND Language = '"+ userMoments.getLanguage() +"' "));
 
         List<UserMoments> idList = qb.list();
@@ -49,10 +51,6 @@ public class UserMomentsRepository {
 
     public static void deleteMomentWithId(Context context, long id) {
         getUserMomentsDao(context).delete(getMomentForId(context, id));
-    }
-
-    public void deleteSelectedMoment(Context context, int selected){
-        getUserMomentsDao(context).delete(getAllMoments(context).get(selected));
     }
 
     public static List<UserMoments> getAllMoments(Context context) {

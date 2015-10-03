@@ -5,8 +5,8 @@ import android.widget.Toast;
 
 import com.ayoprez.database.UserMomentsRepository;
 import com.ayoprez.deilyquote.R;
-import com.ayoprez.utils.Utils;
 import com.ayoprez.notification.StartAndCancelAlarmManager;
+import com.ayoprez.utils.Utils;
 
 import deilyquote.UserMoments;
 
@@ -20,7 +20,7 @@ public class Accept {
 		this.UTILS = new Utils();
 	}
 	
-	public void Accept_Dialog(String Language, final String Topic, String Time){
+	public void Accept_Dialog(String AppLanguage, String Language, final String Topic, String Time){
 		UserMomentsRepository userMomentsRepository = new UserMomentsRepository();
 
 		if(!Language.equals(context.getString(R.string.button_language)) && !Topic.equals(context.getString(R.string.button_topic))

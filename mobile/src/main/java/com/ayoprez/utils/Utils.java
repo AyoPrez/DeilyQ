@@ -10,6 +10,8 @@ import android.util.Log;
 
 import com.ayoprez.deilyquote.MainActivity;
 
+import java.util.Locale;
+
 public class Utils {
 
 	public void Create_Dialog(final Context ctx, String message, String button_title, String dialog_title){
@@ -29,17 +31,15 @@ public class Utils {
 		alertDialogBuilder.show();
 	}
 	
-	public void Create_Dialog_DoNotFinishActivity(final Context ctx, String message,
-												  String button_title, String dialog_title,
-												  DialogInterface.OnClickListener onClickListener){
+	public void Create_Dialog_DoNotFinishActivity(final Context ctx, String message, String button_title, String dialog_title){
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctx);
 		alertDialogBuilder.setTitle(dialog_title);
 		alertDialogBuilder.setMessage(message);
-		alertDialogBuilder.setPositiveButton(button_title, onClickListener);
+		alertDialogBuilder.setPositiveButton(button_title, null);
 						
 		alertDialogBuilder.show();
 	}
-
+	
 	public String WithZero(int i){
 		if(i < 10 && i >= 0){
 			return 0+String.valueOf(i);
@@ -72,4 +72,9 @@ public class Utils {
 		Log.d("Minute", minute);
 		return Integer.valueOf(minute);
 	}
+
+	public Locale getChangedLanguageLocale(String language){
+        //TODO finish it
+        return null;
+    }
 }

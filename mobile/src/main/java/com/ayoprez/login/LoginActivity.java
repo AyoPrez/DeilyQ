@@ -19,6 +19,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class LoginActivity extends AppCompatActivity {
 
     public TwitterLoginButton twitterLoginButton;
+    private Context context;
+    private User user;
     private FacebookLogin facebookLogin = new FacebookLogin(this);
     private TwitterLogin twitterLogin = new TwitterLogin(this);
 
@@ -35,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         facebookLogin.initFacebook();
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        this.context = this;
 
         facebookLogin.facebookLogin();
         twitterLogin.twitterLogin();

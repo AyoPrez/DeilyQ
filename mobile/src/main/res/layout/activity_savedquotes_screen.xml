@@ -10,12 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ViewStub
-        android:id="@+id/viewStub_no_internet"
-        android:layout="@layout/viewstub_no_internet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/savedQuotesRecyclerView"
         android:layout_width="match_parent"

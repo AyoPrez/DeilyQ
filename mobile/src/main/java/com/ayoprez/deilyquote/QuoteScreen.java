@@ -4,26 +4,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.ayoprez.login.SessionManager;
 import com.ayoprez.restfulservice.QuoteSet;
+import com.ayoprez.utils.Utils;
 
 import java.util.Locale;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.Bind;
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class QuoteScreen extends AbstractBaseMainActivity {
-
-    //Probar a poner el context en el Abstract
+public class QuoteScreen extends AppCompatActivity {
 
     private static final String QUOTE_ID_KEY = "quoteId";
 
-    private Context context;
+    private Context mContext;
     private Locale locale;
     private String quoteFromTables;
     private String authorFromTables;
@@ -37,8 +38,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
     @Bind(R.id.buttonSave_QuoteScreen)
     Button mBSaveQuoteScreen;
 
-    @OnClick(R.id.imageButton_QuoteScreen)
-    void buttonSpeaker(){
+    @OnClick(R.id.imageButton_QuoteScreen) void buttonSpeaker(){
         speak.allow(true);
         speak.speak(quoteFromTables);
     }
@@ -61,7 +61,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
 
     @OnClick(R.id.buttonSave_QuoteScreen) void buttonSave(){
         Integer quoteId = bundle.getInt(QUOTE_ID_KEY);
-        int id_user = Integer.valueOf(new SessionManager(context).getUserDetails().get("id"));
+        int id_user = Integer.valueOf(new SessionManager(mContext).getUserDetails().get("id"));
 
         new QuoteSet(this).sendUserQuote(id_user, quoteId);
     }
@@ -73,7 +73,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         ButterKnife.bind(this);
 
-        this.context = this;
+        this.mContext = this;
 
         getDataFromBundle();
 
@@ -91,11 +91,15 @@ public class QuoteScreen extends AbstractBaseMainActivity {
         bundle = getIntent().getExtras();
         quoteFromTables = bundle.getString("quote");
         authorFromTables = bundle.getString("author");
-        locale = DeviceLocale;
+        locale = new Utils().getChangedLanguageLocale(bundle.getString("language"));
 
         if(bundle.getString("saved") != null){
             mBSaveQuoteScreen.setVisibility(View.GONE);
         }
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }

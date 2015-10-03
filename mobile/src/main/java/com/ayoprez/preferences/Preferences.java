@@ -1,5 +1,6 @@
 package com.ayoprez.preferences;
 
+import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,13 +8,16 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -140,6 +144,7 @@ public class Preferences extends PreferenceActivity {
             ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
+
         public void sendFeedback(){
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
@@ -174,6 +179,14 @@ public class Preferences extends PreferenceActivity {
                     openMarket(getString(R.string.LangId));
                 }
             });
+        }
+    }
+
+    public static class LegalFragment extends Fragment {
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.preferences_legal_layout, container, false);
         }
     }
 }
