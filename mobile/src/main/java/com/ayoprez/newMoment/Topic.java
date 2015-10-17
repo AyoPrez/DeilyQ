@@ -37,7 +37,6 @@ public class Topic {
 		Topics.add(ctx.getString(R.string.topic10));
 
 		listViewTopics = (ListView) Dialog.findViewById(R.id.listView_topic);
-//		this.Adapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_list_item_1, Topics);
 		this.Adapter = new TopicDialogAdapter(ctx, Topics);
 		this.listViewTopics.setAdapter(Adapter);
 
@@ -51,5 +50,4 @@ public class Topic {
 
 		Dialog.show();
 	}
-		
 }

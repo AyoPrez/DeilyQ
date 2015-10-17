@@ -21,7 +21,7 @@ public class Language {
 	
 	public Language(Context context){
 		this.ctx = context;
-		
+
 		this.Dialog = new Dialog(ctx);
 		this.Dialog.setContentView(R.layout.dialog_language);
 		this.Dialog.setTitle(R.string.button_language);
@@ -34,10 +34,8 @@ public class Language {
 		Languages.add(ctx.getString(R.string.French));
 
 		this.Language_List = (ListView)Dialog.findViewById(R.id.LV_Language);
-//		this.Adapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_list_item_1, Languages);
 		this.Adapter = new LanguageDialogAdapter(ctx, Languages);
 		this.Language_List.setAdapter(Adapter);
-
 
 		this.Language_List.setOnItemClickListener(new OnItemClickListener(){
 
@@ -47,8 +45,8 @@ public class Language {
 				Dialog.dismiss();
 			}
 		});
-		
+
 		Dialog.show();
 	}
-	
+
 }

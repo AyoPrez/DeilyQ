@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="TW_K" translatable="false">j9aVsdkRy8JM</string>
+    <string name="TW_S" translatable="false">Q9rZYeImpM0XRrX66ao8PNXjFy</string>
+    <string name="T_K" translatable="false">35mIVByv5lBuN</string>
+    <string name="T_S" translatable="false">F3mHXqwjjxneA5JnTmstYUTHuzy</string>
+    <string name="F_K" translatable="false">77059363</string>
+</resources>

@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.GetUser;
+import com.ayoprez.utils.Keys;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -31,7 +32,8 @@ public class TwitterLogin {
     }
 
     public void initTwitter(){
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(context.getString(R.string.t_key), context.getString(R.string.t_secret));
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(Keys.T_KEY + context.getString(R.string.T_K),
+                Keys.T_SECRET + context.getString(R.string.T_S));
         Fabric.with(context, new Twitter(authConfig));
 
         twitterLogin();

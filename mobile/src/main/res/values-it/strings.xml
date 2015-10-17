@@ -90,5 +90,6 @@
     <string name="contact">Contacto</string>
     <string name="contact_message">Si deseas contactar conmigo puedes hacerlo a través de la sección de contacto de mi web. </string>
     <string name="legal_text"></string>
+    <string name="errorDefault">Il y avait une erreur</string>
 
 </resources>

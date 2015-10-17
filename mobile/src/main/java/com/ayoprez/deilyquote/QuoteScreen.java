@@ -1,44 +1,47 @@
 package com.ayoprez.deilyquote;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ayoprez.login.SessionManager;
 import com.ayoprez.restfulservice.QuoteSet;
-import com.ayoprez.utils.Utils;
+import com.ayoprez.utils.SpeakerHelper;
 
 import java.util.Locale;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import de.greenrobot.event.EventBus;
 
-public class QuoteScreen extends AppCompatActivity {
+public class QuoteScreen extends AbstractBaseMainActivity {
 
+    private static final String LOG_TAG = QuoteScreen.class.getSimpleName();
     private static final String QUOTE_ID_KEY = "quoteId";
 
-    private Context mContext;
     private Locale locale;
     private String quoteFromTables;
     private String authorFromTables;
+    private String language;
     private Bundle bundle;
     private SpeakerHelper speak;
 
     @Bind(R.id.textView_QuoteScreen)
-    TextView mTVQuoteScreen;
+    TextView tvQuoteScreen;
     @Bind(R.id.textView_author_QuoteScreen)
-    TextView mTVAuthorQuoteScreen;
+    TextView tvAuthorQuoteScreen;
     @Bind(R.id.buttonSave_QuoteScreen)
-    Button mBSaveQuoteScreen;
+    Button bSaveQuoteScreen;
+    @Bind(R.id.imageButton_QuoteScreen)
+    ImageButton ibSpeaker;
 
-    @OnClick(R.id.imageButton_QuoteScreen) void buttonSpeaker(){
+    @OnClick(R.id.imageButton_QuoteScreen)
+    void buttonSpeaker(){
         speak.allow(true);
         speak.speak(quoteFromTables);
     }
@@ -61,7 +64,7 @@ public class QuoteScreen extends AppCompatActivity {
 
     @OnClick(R.id.buttonSave_QuoteScreen) void buttonSave(){
         Integer quoteId = bundle.getInt(QUOTE_ID_KEY);
-        int id_user = Integer.valueOf(new SessionManager(mContext).getUserDetails().get("id"));
+        int id_user = Integer.valueOf(new SessionManager(this).getUserDetails().get("id"));
 
         new QuoteSet(this).sendUserQuote(id_user, quoteId);
     }
@@ -72,18 +75,17 @@ public class QuoteScreen extends AppCompatActivity {
         setContentView(R.layout.activity_quote_screen);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         ButterKnife.bind(this);
-
-        this.mContext = this;
+        EventBus.getDefault().register(this);
 
         getDataFromBundle();
 
         speak = new SpeakerHelper(this, locale);
 
-        mTVQuoteScreen.setText(quoteFromTables);
-        mTVAuthorQuoteScreen.setText(authorFromTables);
+        tvQuoteScreen.setText(quoteFromTables);
+        tvAuthorQuoteScreen.setText(authorFromTables);
 
         if(!new SessionManager(this).isLoggedIn()){
-            mBSaveQuoteScreen.setVisibility(View.GONE);
+            bSaveQuoteScreen.setVisibility(View.GONE);
         }
     }
 
@@ -91,15 +93,38 @@ public class QuoteScreen extends AppCompatActivity {
         bundle = getIntent().getExtras();
         quoteFromTables = bundle.getString("quote");
         authorFromTables = bundle.getString("author");
-        locale = new Utils().getChangedLanguageLocale(bundle.getString("language"));
+        language = bundle.getString("language");
+        locale = DetectDeviceLanguage.getLocaleFromString(language);
 
         if(bundle.getString("saved") != null){
-            mBSaveQuoteScreen.setVisibility(View.GONE);
+            bSaveQuoteScreen.setVisibility(View.GONE);
         }
     }
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    public void onEvent(final Boolean ready){
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(8000);
+                } catch (InterruptedException e) {
+                    ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(ready){
+                            ibSpeaker.setVisibility(View.VISIBLE);
+                        }else{
+                            ibSpeaker.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+        };
+
+        thread.run();
     }
 }

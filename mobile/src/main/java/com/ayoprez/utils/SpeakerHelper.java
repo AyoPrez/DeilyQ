@@ -1,9 +1,12 @@
-package com.ayoprez.deilyquote;
+package com.ayoprez.utils;
 
 import android.content.Context;
+import android.os.Build;
 import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by AyoPrez on 23/08/15.
@@ -33,14 +36,21 @@ public class SpeakerHelper implements TextToSpeech.OnInitListener{
         if(status == TextToSpeech.SUCCESS){
             tts.setLanguage(local);
             ready = true;
+            EventBus.getDefault().post(ready);
+
         }else{
             ready = false;
+            EventBus.getDefault().post(ready);
         }
     }
 
-    public void speak(String text){
+    public void speak(final String text){
         if(ready && allowed) {
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            }else{
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            }
         }
     }
 

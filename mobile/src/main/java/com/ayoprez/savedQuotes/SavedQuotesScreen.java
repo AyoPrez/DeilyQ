@@ -5,13 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 
+import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.login.SessionManager;
 import com.ayoprez.restfulservice.QuoteGet;
@@ -26,14 +25,13 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by AyoPrez on 24/05/15.
  */
-public class SavedQuotesScreen extends AppCompatActivity {
+public class SavedQuotesScreen extends AbstractBaseMainActivity {
 
-    private Toolbar toolbar;
     protected SessionManager sessionManager;
     protected Dialog loadDialog;
-    private RecyclerView savedQuotesRecyclerView;
-    private RecyclerView.Adapter recyclerViewAdapter;
-    private RecyclerView.LayoutManager recyclerViewLayoutManager;
+    protected RecyclerView savedQuotesRecyclerView;
+    protected RecyclerView.Adapter recyclerViewAdapter;
+    protected RecyclerView.LayoutManager recyclerViewLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +80,9 @@ public class SavedQuotesScreen extends AppCompatActivity {
         savedQuotesRecyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private void initToolbar(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    @Override
+    protected void initToolbar(){
+        super.initToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

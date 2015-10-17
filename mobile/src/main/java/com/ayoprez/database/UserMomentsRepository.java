@@ -22,11 +22,14 @@ public class UserMomentsRepository {
     public long getIdFromData(Context context, UserMoments userMoments){
         QueryBuilder qb = getUserMomentsDao(context).queryBuilder();
         qb.where(new WhereCondition.StringCondition("Time = '"+ userMoments.getTime() +"' " +
-//                "AND Level = '"+ userMoments.getLevel() +"' " +
                 "AND Language = '"+ userMoments.getLanguage() +"' "));
 
         List<UserMoments> idList = qb.list();
         return idList.get(0).getId();
+    }
+
+    public void deleteSelectedMoment(Context context, int selected){
+        getUserMomentsDao(context).delete(getAllMoments(context).get(selected));
     }
 
     public long getLastId(Context context){

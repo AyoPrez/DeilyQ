@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.QuoteScreen;
 import com.ayoprez.deilyquote.R;
 
@@ -20,6 +21,7 @@ import deilyquote.UserQuotes;
  */
 public class LaunchNotification extends Application{
 
+    private static final String LOG_TAG = LaunchNotification.class.getSimpleName();
     private Context context;
 
     public LaunchNotification(Context context){
@@ -61,8 +63,7 @@ public class LaunchNotification extends Application{
             launchNotification(context, quote);
             EventBus.getDefault().unregister(this);
         }catch (Exception e){
-            Log.e("NotificationException", "Error: " + e.getMessage());
-            //Crashlytics
+            ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
         }
     }
 

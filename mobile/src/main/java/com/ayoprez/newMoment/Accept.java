@@ -19,7 +19,8 @@ public class Accept {
 		this.context = context;
 		this.UTILS = new Utils();
 	}
-	
+
+	//TODO See if I need AppLanguage and delete it if I don't need it
 	public void Accept_Dialog(String AppLanguage, String Language, final String Topic, String Time){
 		UserMomentsRepository userMomentsRepository = new UserMomentsRepository();
 

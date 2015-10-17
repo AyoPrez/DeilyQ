@@ -111,6 +111,7 @@
     <string name="LangId">com.ayoprez.deilylang</string>
     <string name="appName_shc">Speech help cards</string>
     <string name="appName_deilyquote">DeilyLang</string>
+    <string name="errorDefault">Hubo un error</string>
 
 
 </resources>

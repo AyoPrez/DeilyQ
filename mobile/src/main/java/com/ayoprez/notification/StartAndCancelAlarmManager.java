@@ -6,13 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ayoprez.login.SessionManager;
+import com.ayoprez.utils.TimeCalculator;
 
 import deilyquote.UserMoments;
 
 /**
  * Created by Ayoze on 29/12/14.
  */
-public class StartAndCancelAlarmManager extends TimeCalculator{
+public class StartAndCancelAlarmManager extends TimeCalculator {
 
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
