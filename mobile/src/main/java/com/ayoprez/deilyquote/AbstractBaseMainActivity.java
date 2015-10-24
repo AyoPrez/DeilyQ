@@ -35,7 +35,6 @@ public abstract class AbstractBaseMainActivity extends AppCompatActivity{
                 Keys.TWITTER_KEY + getString(R.string.TW_K),
                 Keys.TWITTER_SECRET + getString(R.string.TW_S));
         Fabric.with(this, new Crashlytics(), new Twitter(authConfig));
-
         this.sessionManager = new SessionManager(this);
     }
 
@@ -45,19 +44,11 @@ public abstract class AbstractBaseMainActivity extends AppCompatActivity{
     }
 
     protected int getUserId(){
-        if(sessionManager != null){
-            return Integer.valueOf(sessionManager.getUserDetails().get("id"));
-        }else{
-            return 0;
-        }
+        return (sessionManager != null) ? Integer.valueOf(sessionManager.getUserDetails().get("id")) : 0;
     }
 
     protected String getUserName(){
-        if(sessionManager.isLoggedIn()){
-            return sessionManager.getUserDetails().get("name");
-        }else{
-            return null;
-        }
+        return sessionManager.isLoggedIn() ? sessionManager.getUserDetails().get("name") : null;
     }
 
     protected void goToNewScreen(Class destinyClass){

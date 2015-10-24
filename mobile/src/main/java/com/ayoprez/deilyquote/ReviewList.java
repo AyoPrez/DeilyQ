@@ -58,7 +58,6 @@ public class ReviewList {
             new StartAndCancelAlarmManager(context, getDataFromDatabaseToListView(context).get(selectedItem)).cancelAlarmManager();
             new UserMomentsRepository().deleteSelectedMoment(context, selectedItem);
         }catch(Exception e){
-            //TODO Crashlytics
             ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
         }
     }

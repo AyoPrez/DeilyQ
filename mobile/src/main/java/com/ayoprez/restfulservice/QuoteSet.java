@@ -1,12 +1,11 @@
 package com.ayoprez.restfulservice;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.utils.Utils;
 
-import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -17,6 +16,8 @@ import retrofit.client.Response;
  */
 public class QuoteSet {
     public static final String ENDPOINT = "http://deilyquote.ayoprez.com/api/index.php/";
+
+    private static final String LOG_TAG = QuoteSet.class.getSimpleName();
 
     private UserAPI userAPI;
     private Context context;
@@ -42,16 +43,13 @@ public class QuoteSet {
                 if (bool == 1) {
                     getConfirmedDialog();
                 } else {
-                    //Crashlitics
-                    Log.e("DeilyLang", "Error: GetWords = null");
+                    ErrorHandle.getInstance().Error(LOG_TAG, "GetWord = Null");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("RequestError", "Error: " + error.getMessage());
-                //Crashlytics
-                EventBus.getDefault().post(error);
+                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }

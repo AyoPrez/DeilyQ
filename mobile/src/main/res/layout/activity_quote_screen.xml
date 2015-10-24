@@ -40,6 +40,14 @@
             android:layout_margin="@dimen/image_margin"
             android:visibility="gone"
             android:background="@drawable/ic_volume_up_light_green_50_36dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_QuoteScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/image_margin"
+            android:indeterminate="true"/>
     </LinearLayout>
 
     <LinearLayout

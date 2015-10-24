@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.ayoprez.database.UserMomentsRepository;
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.utils.TimeCalculator;
 
 import java.util.List;
@@ -16,12 +17,15 @@ import deilyquote.UserMoments;
 
 public class DeviceBootReceiver extends BroadcastReceiver {
 
+    private static final String LOG_TAG = DeviceBootReceiver.class.getSimpleName();
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
            reSchedule(context);
         }else{
             Log.e("", "It is not a reboot intent");
+            ErrorHandle.getInstance().Error(LOG_TAG, "It is not a reboot intent");
         }
     }
 
@@ -29,7 +33,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
         Intent alarmIntent = new Intent(context, AlarmReceiver.class);
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        List<UserMoments> dataFromDatabase = new UserMomentsRepository().getAllMoments(context);
+        List<UserMoments> dataFromDatabase = UserMomentsRepository.getAllMoments(context);
         int total = new UserMomentsRepository().getRowsCount(context);
 
         String time;
@@ -51,8 +55,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
                 time = null;
                 pendingIntent = null;
             }catch(Exception e){
-                //Crashlytics
-                Log.e("RescheduleException", "Error: " + e.getMessage());
+                ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
             }
         }
     }

@@ -59,15 +59,9 @@ public class ProfileScreen extends AbstractBaseMainActivity{
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToProfileIntent();
+                goToNewScreen(MainActivity.class);
             }
         });
-    }
-
-    private void backToProfileIntent(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     @Override

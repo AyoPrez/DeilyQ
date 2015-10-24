@@ -1,13 +1,13 @@
 package com.ayoprez.deilyquote;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by AyoPrez on 11/07/15.
  */
-public class MainApplication extends Application {
+public class MainApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {

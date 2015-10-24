@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ayoprez.login.SessionManager;
@@ -39,6 +40,8 @@ public class QuoteScreen extends AbstractBaseMainActivity {
     Button bSaveQuoteScreen;
     @Bind(R.id.imageButton_QuoteScreen)
     ImageButton ibSpeaker;
+    @Bind(R.id.progressBar_QuoteScreen)
+    ProgressBar pbSpeaker;
 
     @OnClick(R.id.imageButton_QuoteScreen)
     void buttonSpeaker(){
@@ -101,6 +104,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
         }
     }
 
+    //TODO Fix the progress bar. It stops
     public void onEvent(final Boolean ready){
 
         Thread thread = new Thread() {
@@ -117,8 +121,10 @@ public class QuoteScreen extends AbstractBaseMainActivity {
                     public void run() {
                         if(ready){
                             ibSpeaker.setVisibility(View.VISIBLE);
+                            pbSpeaker.setVisibility(View.GONE);
                         }else{
                             ibSpeaker.setVisibility(View.GONE);
+                            pbSpeaker.setVisibility(View.VISIBLE);
                         }
                     }
                 });

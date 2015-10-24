@@ -1,8 +1,6 @@
 package com.ayoprez.savedQuotes;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,22 +10,18 @@ import android.view.Window;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.R;
-import com.ayoprez.login.SessionManager;
 import com.ayoprez.restfulservice.QuoteGet;
 import com.ayoprez.userProfile.ProfileScreen;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by AyoPrez on 24/05/15.
  */
 public class SavedQuotesScreen extends AbstractBaseMainActivity {
 
-    protected SessionManager sessionManager;
     protected Dialog loadDialog;
     protected RecyclerView savedQuotesRecyclerView;
     protected RecyclerView.Adapter recyclerViewAdapter;
@@ -38,11 +32,8 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savedquotes_screen);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        ButterKnife.bind(this);
 
         EventBus.getDefault().register(this);
-
-        sessionManager = new SessionManager(this);
 
         initToolbar();
 
@@ -89,24 +80,9 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToProfileIntent();
+                goToNewScreen(ProfileScreen.class);
             }
         });
-    }
-
-    private void backToProfileIntent(){
-        Intent intent = new Intent(this, ProfileScreen.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    protected int getUserId(){
-        return Integer.valueOf(sessionManager.getUserDetails().get("id"));
     }
 
     protected void getSavedQuotes(int userId){

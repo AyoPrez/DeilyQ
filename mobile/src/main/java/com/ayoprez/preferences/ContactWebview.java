@@ -65,5 +65,4 @@ public class ContactWebview extends Activity {
                 setContentView(mWebView);
         }
     }
-
 }

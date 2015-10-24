@@ -1,8 +1,8 @@
 package com.ayoprez.restfulservice;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.notification.LaunchNotification;
 import com.ayoprez.savedQuotes.SavedQuotes;
 
@@ -19,8 +19,9 @@ import retrofit.client.Response;
  * Created by AyoPrez on 12/04/15.
  */
 public class QuoteGet {
-
     public static final String ENDPOINT = "http://deilyquote.ayoprez.com/api/index.php/";
+
+    private static final String LOG_TAG = QuoteGet.class.getSimpleName();
 
     private QuoteAPI quoteAPI;
 
@@ -45,8 +46,7 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("RequestError", "Error: " + error.getMessage());
-                //Crashlytics
+                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }
@@ -63,8 +63,7 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("RequestError", "Error: " + error.getMessage());
-                //Crashlytics
+                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }
@@ -78,8 +77,7 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("RequestError", "Error SavedQuotes: " + error.getMessage());
-                //Crashlytics
+                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }

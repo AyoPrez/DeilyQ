@@ -13,11 +13,9 @@ import deilyquote.UserMoments;
 public class Accept {
 
 	private Context context;
-	private Utils UTILS;
 	
 	public Accept(Context context){
 		this.context = context;
-		this.UTILS = new Utils();
 	}
 
 	//TODO See if I need AppLanguage and delete it if I don't need it
@@ -30,16 +28,16 @@ public class Accept {
                     userMomentsRepository.getLastId(context),
                     Language,
                     Topic,
-                    UTILS.TakeOutTimeDots(Time));
+                    Utils.TakeOutTimeDots(Time));
 
             userMomentsRepository.insertOrUpdate(context, userMoments);
 
 			if(new StartAndCancelAlarmManager(context, userMoments).startAlarmManager(Time)){
-                UTILS.Create_Dialog(context, context.getString(R.string.successSavingMoment),
+                Utils.Create_Dialog(context, context.getString(R.string.successSavingMoment),
                         context.getString(R.string.buttonAcceptDialog),
                         context.getString(R.string.successSavingDialogTitle));
             }else{
-                UTILS.Create_Dialog(context, context.getString(R.string.errorSavingMoment),
+                Utils.Create_Dialog(context, context.getString(R.string.errorSavingMoment),
                         context.getString(R.string.buttonAcceptDialog),
                         context.getString(R.string.errorSavingDialogTitle));
             }

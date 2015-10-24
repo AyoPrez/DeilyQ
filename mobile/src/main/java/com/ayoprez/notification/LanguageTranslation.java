@@ -1,153 +1,92 @@
 package com.ayoprez.notification;
 
+import java.util.ArrayList;
+
 /**
  * Created by AyoPrez on 21/08/15.
  */
 public class LanguageTranslation {
 
+    private static LanguageTranslation ourInstance = new LanguageTranslation();
+
+    public static LanguageTranslation getInstance() {
+        return ourInstance;
+    }
+
+    private LanguageTranslation() {
+    }
+
     public String translateLanguage(String language){
-        String finalLanguage = "";
 
-        if(checkEnglishLanguage(language)){
-            finalLanguage = language;
+        if(getArrayEnglish().contains(language.toLowerCase())){
+            return "english";
+        }else if(getArraySpanish().contains(language.toLowerCase())){
+            return "spanish";
+        }else if(getArrayGerman().contains(language.toLowerCase())){
+            return "german";
+        }else if(getArrayItalian().contains(language.toLowerCase())){
+            return "italian";
+        }else if(getArrayFrench().contains(language.toLowerCase())){
+            return "french";
         }else{
-            if(translateSpanishLanguage(language).equals("")){
-                if(translateGermanLanguage(language).equals("")){
-                    if(translateEnglishLanguage(language).equals("")){
-                        if(translateFrenchLanguage(language).equals("")){
-                            if(!translateItalianLanguage(language).equals("")){
-                                finalLanguage = translateItalianLanguage(language);
-                            }
-                        }else{
-                            finalLanguage = translateFrenchLanguage(language);
-                        }
-                    }else{
-                        finalLanguage = translateEnglishLanguage(language);
-                    }
-                }else{
-                    finalLanguage = translateGermanLanguage(language);
-                }
-            }else{
-                finalLanguage = translateSpanishLanguage(language);
-            }
+            return language;
         }
 
-        return finalLanguage;
     }
 
-    private boolean checkEnglishLanguage(String language){
-        boolean checked = false;
-        switch (language.toLowerCase()){
-            case "english":
-                checked = true;
-                break;
-            case "spanish":
-                checked = true;
-                break;
-            case "italian":
-                checked = true;
-                break;
-            case "french":
-                checked = true;
-                break;
-            case "german":
-                checked = true;
-                break;
-            default:
-                checked = false;
-        }
-        return checked;
+    private ArrayList<String> getArraySpanish(){
+        ArrayList<String> spanish = new ArrayList<>();
+
+        spanish.add("español");
+        spanish.add("spanisch");
+        spanish.add("spagnolo");
+        spanish.add("espagnol");
+        spanish.add("spanish");
+
+        return spanish;
     }
 
-    private String translateSpanishLanguage(String language){
-        String finalLanguage = "";
-        switch (language.toLowerCase()){
-            case "español":
-                finalLanguage = "spanish";
-                break;
-            case "spanisch":
-                finalLanguage = "spanish";
-                break;
-            case "spagnolo":
-                finalLanguage = "spanish";
-                break;
-            case "espagnol":
-                finalLanguage = "spanish";
-                break;
-        }
-        return finalLanguage;
+    private ArrayList<String> getArrayEnglish(){
+        ArrayList<String> english = new ArrayList<>();
+
+        english.add("inglés");
+        english.add("englisch");
+        english.add("inglese");
+        english.add("anglais");
+        english.add("english");
+
+        return english;
     }
 
-    private String translateEnglishLanguage(String language){
-        String finalLanguage = "";
-        switch (language.toLowerCase()){
-            case "inglés":
-                finalLanguage = "english";
-                break;
-            case "englisch":
-                finalLanguage = "english";
-                break;
-            case "inglese":
-                finalLanguage = "english";
-                break;
-            case "anglais":
-                finalLanguage = "english";
-                break;
-        }
-        return finalLanguage;
+    private ArrayList<String> getArrayGerman(){
+        ArrayList<String> german = new ArrayList<>();
+
+        german.add("alemán");
+        german.add("deutsch");
+        german.add("tedesco");
+        german.add("allemand");
+        german.add("german");
+        return german;
     }
 
-    private String translateGermanLanguage(String language){
-        String finalLanguage = "";
-        switch (language.toLowerCase()){
-            case "alemán":
-                finalLanguage = "german";
-                break;
-            case "deutsch":
-                finalLanguage = "german";
-                break;
-            case "tedesco":
-                finalLanguage = "german";
-                break;
-            case "allemand":
-                finalLanguage = "german";
-                break;
-        }
-        return finalLanguage;
+    private ArrayList<String> getArrayItalian(){
+        ArrayList<String> italian = new ArrayList<>();
+
+        italian.add("italiano");
+        italian.add("italienisch");
+        italian.add("italien");
+        italian.add("italian");
+        return italian;
     }
 
-    private String translateItalianLanguage(String language){
-        String finalLanguage = "";
-        switch (language.toLowerCase()){
-            case "italiano":
-                finalLanguage = "italian";
-                break;
-            case "italienisch":
-                finalLanguage = "italian";
-                break;
-            case "italien":
-                finalLanguage = "italian";
-                break;
-        }
-        return finalLanguage;
-    }
+    private ArrayList<String> getArrayFrench(){
+        ArrayList<String> french = new ArrayList<>();
 
-    private String translateFrenchLanguage(String language){
-        String finalLanguage = "";
-        switch (language.toLowerCase()){
-            case "francés":
-                finalLanguage = "french";
-                break;
-            case "französisch":
-                finalLanguage = "french";
-                break;
-            case "francese":
-                finalLanguage = "french";
-                break;
-            case "français":
-                finalLanguage = "french";
-                break;
-        }
-        return finalLanguage;
+        french.add("francés");
+        french.add("französisch");
+        french.add("francese");
+        french.add("francese");
+        french.add("french");
+        return french;
     }
 }

@@ -44,8 +44,7 @@ public class UserMomentsRepository {
     }
 
     public int getRowsCount(Context context){
-        int totalSize = getUserMomentsDao(context).loadAll().size();
-        return totalSize;
+        return getUserMomentsDao(context).loadAll().size();
     }
 
     public static void clearMoments(Context context) {

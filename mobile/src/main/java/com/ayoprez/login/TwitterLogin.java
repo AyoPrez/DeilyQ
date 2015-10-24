@@ -2,8 +2,8 @@ package com.ayoprez.login;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.widget.Toast;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.GetUser;
 import com.ayoprez.utils.Keys;
@@ -22,6 +22,8 @@ import io.fabric.sdk.android.Fabric;
  * Created by AyoPrez on 25/07/15.
  */
 public class TwitterLogin {
+
+    private static final String LOG_TAG = TwitterLogin.class.getSimpleName();
 
     private String TYPE_ID = "t";
     private Context context;
@@ -74,7 +76,8 @@ public class TwitterLogin {
 
             @Override
             public void failure(TwitterException exception) {
-                // Do something on failure
+                //TODO Negative dialog
+                ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
             }
         });
     }
@@ -93,14 +96,9 @@ public class TwitterLogin {
 
             @Override
             public void failure(TwitterException exception) {
-                //TODO cambiar esto
-                Toast.makeText(context, "Come off Twitter! " + exception.getMessage(), Toast.LENGTH_LONG).show();
+                //TODO Negative dialog
+                ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
             }
         });
     }
-
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        twitterLoginButton.onActivityResult(requestCode, resultCode, data);
-//    }
 }

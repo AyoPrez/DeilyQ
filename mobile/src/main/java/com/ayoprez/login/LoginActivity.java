@@ -3,23 +3,21 @@ package com.ayoprez.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
+import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by AyoPrez on 22/05/15.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AbstractBaseMainActivity {
 
     public TwitterLoginButton twitterLoginButton;
-
     private FacebookLogin facebookLogin = new FacebookLogin(this);
     private TwitterLogin twitterLogin = new TwitterLogin(this);
 
@@ -51,13 +49,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void startSession(Context applicationContext, User user){
         new SessionManager(applicationContext).createLoginSession(user.getName(), String.valueOf(user.getId_U()));
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        goToNewScreen(MainActivity.class);
     }
 }

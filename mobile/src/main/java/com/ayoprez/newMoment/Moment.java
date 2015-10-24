@@ -16,7 +16,7 @@ import butterknife.OnClick;
 
 public class Moment {
 
-	private Context ctx;
+	private Context context;
 	private Dialog Dialog;
 
     @Bind(R.id.tP_time)
@@ -34,13 +34,13 @@ public class Moment {
             M = Timey_Wimey.getMinute();
         }
 
-        ((NewMomentActivity) ctx).Time_Text(Utils.WithZero(H) + ":" + Utils.WithZero(M));
+        ((NewMomentActivity) context).Time_Text(Utils.WithZero(H) + ":" + Utils.WithZero(M));
 
         Dialog.dismiss();
     }
 
 	public Moment(Context context){
-		this.ctx = context;
+		this.context = context;
 		initDialog(context);
         ButterKnife.bind(this, Dialog);
 

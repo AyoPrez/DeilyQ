@@ -21,12 +21,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 
 /**
  * Created by AyoPrez on 03/08/15.
  */
 public class Preferences extends PreferenceActivity {
+
+    private static final String LOG_TAG = Preferences.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,7 @@ public class Preferences extends PreferenceActivity {
                 if (!MyStartActivity(intent)) {
                     //Well if this also fails, we have run out of options, inform the user.
                     Snackbar.make(getView(), getString(R.string.rateError), Snackbar.LENGTH_LONG).show();
+                    ErrorHandle.getInstance().Error(LOG_TAG, "No open Play Store");
                 }
             }
         }
@@ -124,6 +128,7 @@ public class Preferences extends PreferenceActivity {
                 startActivity(aIntent);
                 return true;
             } catch (ActivityNotFoundException e) {
+                ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
                 return false;
             }
         }
@@ -154,6 +159,7 @@ public class Preferences extends PreferenceActivity {
             try {
                 startActivity(Intent.createChooser(i, getString(R.string.feedback_mail_dialog_title)));
             } catch (android.content.ActivityNotFoundException ex) {
+                ErrorHandle.getInstance().Error(LOG_TAG, ex.toString());
                 Snackbar.make(getView(), getString(R.string.feedback_mail_error), Snackbar.LENGTH_SHORT).show();
             }
         }
