@@ -79,13 +79,13 @@ public class FacebookLogin {
 
             @Override
             public void onCancel() {
-                //TODO Show negative dialog
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
                 ErrorHandle.getInstance().Error(LOG_TAG, "Cancel");
             }
 
             @Override
             public void onError(FacebookException exception) {
-                //TODO Negative dialog
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
                 ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
             }
         });
@@ -102,6 +102,7 @@ public class FacebookLogin {
                     new GetUser(context).sendUserDataRequest(user.getSocial_Id(), TYPE_ID, user.getName());
 
                 } catch (JSONException e) {
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
                     ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
                 }
             }

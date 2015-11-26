@@ -43,8 +43,8 @@ public class ReviewList {
                     deleteItemFromDatabase(context, selectedItem);
                     showReviewList(context);
                 } catch (Exception e) {
-                    //TODO Change for Snackbar
-                    Toast.makeText(context, R.string.errorDeletingMoment, Toast.LENGTH_LONG).show();
+                   ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+                   ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 }
             }
         };
@@ -59,6 +59,7 @@ public class ReviewList {
             new UserMomentsRepository().deleteSelectedMoment(context, selectedItem);
         }catch(Exception e){
             ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+            ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDeletingMoment));
         }
     }
 }

@@ -63,6 +63,7 @@ public class LaunchNotification extends Application{
             launchNotification(context, quote);
             EventBus.getDefault().unregister(this);
         }catch (Exception e){
+            ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
             ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
         }
     }

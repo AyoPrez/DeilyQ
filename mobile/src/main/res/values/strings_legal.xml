@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="legal_title">Legal and contact</string>
-    <string name="terms">Terms and conditions</string>
-    <string name="contact">Contact</string>
-    <string name="contact_message">If you want to contact with me you can do it from the contact section of my web. </string>
-
-    <string name="made_in">Made en Germany</string>
-    <string name="more_of_Ayoprez">More apps of AyoPrez</string>
-    <string name="developer">Developer</string>
-    <string name="feedback">Send some feedback</string>
-    <string name="rateAtGoogle" translatable="false">Rate the app</string>
-    <string name="rateError">Could not open the Play Store, please install it and try again.</string>
-    <string name="appName_shc">Speech help cards</string>
-    <string name="appName_deilylang">DeilyLang</string>
-    <string name="marketId">com.ayoprez.deilyquote</string>
-    <string name="SHCId">com.ayoprez.speechhelpcards</string>
-    <string name="LangId">com.ayoprez.deilylang</string>
-    <string name="feedback_mail_subject">Feedback DeilyQuote</string>
-    <string name="feedback_mail_dialog_title">Send feedback</string>
-    <string name="feedback_mail_error">There are no email clients installed</string>
-
-    <string name="facebook_id" translatable="false">858569614227458</string>
-
-
     <string name="eula_data">Last updated: 26 - 08 - 2015 \n\n
 Ayoze Pérez Rodríguez(hereafter "THE DEVELOPER")\n
 with address Teichgraben, 4, Jena, Germany,\n

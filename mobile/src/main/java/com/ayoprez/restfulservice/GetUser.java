@@ -3,6 +3,7 @@ package com.ayoprez.restfulservice;
 import android.content.Context;
 
 import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.R;
 import com.ayoprez.login.LoginActivity;
 import com.ayoprez.login.User;
 
@@ -44,12 +45,14 @@ public class GetUser {
                     ((LoginActivity)context).startSession(context, new User(userName, user.getId_U()));
 
                 } else {
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                     ErrorHandle.getInstance().Error(LOG_TAG, "GetUser = null");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });

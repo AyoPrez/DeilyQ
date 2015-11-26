@@ -18,8 +18,7 @@ public class Accept {
 		this.context = context;
 	}
 
-	//TODO See if I need AppLanguage and delete it if I don't need it
-	public void Accept_Dialog(String AppLanguage, String Language, final String Topic, String Time){
+	public void Accept_Dialog(String Language, final String Topic, String Time){
 		UserMomentsRepository userMomentsRepository = new UserMomentsRepository();
 
 		if(!Language.equals(context.getString(R.string.button_language)) && !Topic.equals(context.getString(R.string.button_topic))

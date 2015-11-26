@@ -28,7 +28,6 @@ public class QuoteScreen extends AbstractBaseMainActivity {
     private Locale locale;
     private String quoteFromTables;
     private String authorFromTables;
-    private String language;
     private Bundle bundle;
     private SpeakerHelper speak;
 
@@ -96,8 +95,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
         bundle = getIntent().getExtras();
         quoteFromTables = bundle.getString("quote");
         authorFromTables = bundle.getString("author");
-        language = bundle.getString("language");
-        locale = DetectDeviceLanguage.getLocaleFromString(language);
+        locale = DetectDeviceLanguage.getLocaleFromString(bundle.getString("language"));
 
         if(bundle.getString("saved") != null){
             bSaveQuoteScreen.setVisibility(View.GONE);

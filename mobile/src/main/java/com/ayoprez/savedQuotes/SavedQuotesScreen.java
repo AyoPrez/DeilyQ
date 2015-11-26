@@ -1,6 +1,7 @@
 package com.ayoprez.savedQuotes;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +38,7 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
 
         initToolbar();
 
-        getSavedQuotes(getUserId());
+        getSavedQuotes(this, getUserId());
     }
 
     @Override
@@ -85,8 +86,8 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         });
     }
 
-    protected void getSavedQuotes(int userId){
-        new QuoteGet().getUserQuotes(userId);
+    protected void getSavedQuotes(Context context, int userId){
+        new QuoteGet().getUserQuotes(context, userId);
         createLoadDialog();
     }
 

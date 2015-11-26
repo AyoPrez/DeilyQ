@@ -76,7 +76,7 @@ public class TwitterLogin {
 
             @Override
             public void failure(TwitterException exception) {
-                //TODO Negative dialog
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
                 ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
             }
         });
@@ -96,7 +96,7 @@ public class TwitterLogin {
 
             @Override
             public void failure(TwitterException exception) {
-                //TODO Negative dialog
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
                 ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
             }
         });

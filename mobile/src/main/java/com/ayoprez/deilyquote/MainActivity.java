@@ -38,11 +38,11 @@ public class MainActivity extends AbstractBaseMainActivity {
     }
 
     //Test
-    //TODO hide
-    @OnClick(R.id.buttonn)
-    void newNotification(){
-        new Tests().testNotification(this);
-    }
+    //hide
+//    @OnClick(R.id.buttonn)
+//    void newNotification(){
+//        new Tests().testNotification(this);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

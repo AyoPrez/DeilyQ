@@ -1,11 +1,14 @@
 package com.ayoprez.deilyquote;
 
+import android.util.Log;
+
 import java.util.Locale;
 
 /**
  * Created by AyoPrez on 10/09/15.
  */
 public class DetectDeviceLanguage {
+    public static final String LOG_TAG = DetectDeviceLanguage.class.getSimpleName();
 
     public static String getISO3Language(){
         return Locale.getDefault().getISO3Language();

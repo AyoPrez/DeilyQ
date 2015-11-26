@@ -43,12 +43,14 @@ public class QuoteSet {
                 if (bool == 1) {
                     getConfirmedDialog();
                 } else {
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                     ErrorHandle.getInstance().Error(LOG_TAG, "GetWord = Null");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });

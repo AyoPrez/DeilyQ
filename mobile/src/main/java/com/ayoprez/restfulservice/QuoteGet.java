@@ -3,6 +3,7 @@ package com.ayoprez.restfulservice;
 import android.content.Context;
 
 import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.R;
 import com.ayoprez.notification.LaunchNotification;
 import com.ayoprez.savedQuotes.SavedQuotes;
 
@@ -34,7 +35,7 @@ public class QuoteGet {
         quoteAPI = restAdapter.create(QuoteAPI.class);
     }
 
-    public void getQuoteWithPersonality(Context context, final String personality, final String language, final int id_u){
+    public void getQuoteWithPersonality(final Context context, final String personality, final String language, final int id_u){
         new LaunchNotification(context);
 
         quoteAPI.getQuoteWithPersonality(personality, language, id_u, new Callback<UserQuotes>() {
@@ -46,12 +47,13 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }
 
-    public void getQuoteWithoutPersonality(Context context, final String language, final int id_u){
+    public void getQuoteWithoutPersonality(final Context context, final String language, final int id_u){
         new LaunchNotification(context);
 
         quoteAPI.getQuoteWithoutPersonality(language, id_u, new Callback<UserQuotes>() {
@@ -63,12 +65,13 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });
     }
 
-    public void getUserQuotes(int id_u){
+    public void getUserQuotes(final Context context, int id_u){
         quoteAPI.getUserQuotes(id_u, new Callback<ArrayList<SavedQuotes>>() {
             @Override
             public void success(ArrayList<SavedQuotes> savedQuotes, Response response) {
@@ -77,6 +80,7 @@ public class QuoteGet {
 
             @Override
             public void failure(RetrofitError error) {
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
             }
         });

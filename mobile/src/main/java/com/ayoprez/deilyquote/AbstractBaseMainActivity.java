@@ -22,9 +22,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public abstract class AbstractBaseMainActivity extends AppCompatActivity{
 
-    //TODO probar que funciona correctamente
-    protected String DeviceLanguageISO = DetectDeviceLanguage.getISO3Language();
-    protected Locale DeviceLocale = DetectDeviceLanguage.getLocaleFromISO3(DeviceLanguageISO);
     protected SessionManager sessionManager;
     protected Toolbar toolbar;
 

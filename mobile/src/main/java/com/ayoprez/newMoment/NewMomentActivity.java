@@ -36,7 +36,7 @@ public class NewMomentActivity extends AbstractBaseMainActivity{
     }
     @OnClick(R.id.b_accept)
     void OnButtonAcceptClick(){
-        new Accept(context).Accept_Dialog(null, B_Language.getText().toString(),
+        new Accept(context).Accept_Dialog(B_Language.getText().toString(),
                 B_Topic.getText().toString(), B_Time.getText().toString());
     }
 

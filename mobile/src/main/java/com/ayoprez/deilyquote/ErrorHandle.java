@@ -18,7 +18,7 @@ public class ErrorHandle {
 
     public void Error(String where, String error){
         Log.e(where, error);
-//TODO add negative dialog
+
         Crashlytics.getInstance().core.getIdentifier();
         Crashlytics.getInstance().core.log(where + " - " + error);
     }

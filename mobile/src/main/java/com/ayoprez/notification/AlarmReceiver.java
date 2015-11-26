@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.QuoteGet;
 
 public class AlarmReceiver extends BroadcastReceiver{
@@ -19,6 +20,7 @@ public class AlarmReceiver extends BroadcastReceiver{
         try {
             getQuote(intent);
         } catch (Exception e) {
+            ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
             ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
         }
     }
