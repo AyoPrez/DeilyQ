@@ -3,42 +3,58 @@ package com.ayoprez.savedQuotes;
 import android.app.Dialog;
 import android.content.Context;
 import android.media.AudioManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.Window;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.QuoteGet;
 import com.ayoprez.userProfile.ProfileScreen;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
  * Created by AyoPrez on 24/05/15.
  */
 public class SavedQuotesScreen extends AbstractBaseMainActivity {
+    private static final String LOG_TAG = SavedQuotesScreen.class.getSimpleName();
 
     protected Dialog loadDialog;
     protected RecyclerView savedQuotesRecyclerView;
     protected RecyclerView.Adapter recyclerViewAdapter;
     protected RecyclerView.LayoutManager recyclerViewLayoutManager;
 
+    @Bind(R.id.viewStub_no_internet)
+    ViewStub viewStubNoInternet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savedquotes_screen);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        ButterKnife.bind(this);
 
         EventBus.getDefault().register(this);
 
         initToolbar();
 
-        getSavedQuotes(this, getUserId());
+        try {
+            getSavedQuotes(this, getUserId());
+        } catch (Exception e) {
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -87,12 +103,28 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
     }
 
     protected void getSavedQuotes(Context context, int userId){
-        new QuoteGet().getUserQuotes(context, userId);
-        createLoadDialog();
+        if(isNetworkAvailable()) {
+            new QuoteGet().getUserQuotes(context, userId);
+            createLoadDialog();
+        }else{
+            viewStubNoInternet.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public void onEvent(ArrayList<SavedQuotes> savedQuotes){
-        initRecyclerView(savedQuotes);
-        cancelDialog();
+        if(savedQuotes.size() > 0) {
+            initRecyclerView(savedQuotes);
+            cancelDialog();
+        }else{
+            viewStubNoInternet.setLayoutResource(R.layout.empty_list_layout);
+            viewStubNoInternet.setVisibility(View.VISIBLE);
+            cancelDialog();
+        }
     }
 }

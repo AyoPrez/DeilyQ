@@ -12,20 +12,18 @@ import com.ayoprez.restfulservice.QuoteGet;
 public class AlarmReceiver extends BroadcastReceiver{
 
     private static final String LOG_TAG = AlarmReceiver.class.getSimpleName();
-    public Context context;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        this.context = context;
         try {
-            getQuote(intent);
+            getQuote(context, intent);
         } catch (Exception e) {
             ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-            ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
         }
     }
 
-    private void getQuote(Intent intent)throws Exception{
+    private void getQuote(Context context, Intent intent)throws Exception{
         String personality = PersonalityTranslation.getInstance().translatePersonality(intent.getStringExtra("personality"));
         String language = LanguageTranslation.getInstance().translateLanguage(intent.getStringExtra("language"));
         int id_u = intent.getIntExtra("id_u", 0);

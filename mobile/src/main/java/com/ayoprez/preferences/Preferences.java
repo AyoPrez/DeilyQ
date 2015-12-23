@@ -43,7 +43,7 @@ public class Preferences extends PreferenceActivity {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.layout.preferences_layout);
+            addPreferencesFromResource(R.xml.preferences_layout);
 
             Preference buttonAbout = (Preference) findPreference("about");
             buttonAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -108,31 +108,6 @@ public class Preferences extends PreferenceActivity {
             startActivity(i);
         }
 
-        private void openMarket(String id){
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            //Try Google play
-            intent.setData(Uri.parse("market://details?id= " + id));
-            if (!MyStartActivity(intent)) {
-                //Market (Google play) app seems not installed, let's try to open a webbrowser
-                intent.setData(Uri.parse("https://play.google.com/store/apps/details?" + id));
-                if (!MyStartActivity(intent)) {
-                    //Well if this also fails, we have run out of options, inform the user.
-                    Snackbar.make(getView(), getString(R.string.rateError), Snackbar.LENGTH_LONG).show();
-                    ErrorHandle.getInstance().Error(LOG_TAG, "No open Play Store");
-                }
-            }
-        }
-
-        private boolean MyStartActivity(Intent aIntent) {
-            try{
-                startActivity(aIntent);
-                return true;
-            } catch (ActivityNotFoundException e) {
-                ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
-                return false;
-            }
-        }
-
         private void showAboutDialog() {
             final SpannableString m = new SpannableString(
                     getString(R.string.info_message) + " " +
@@ -159,8 +134,21 @@ public class Preferences extends PreferenceActivity {
             try {
                 startActivity(Intent.createChooser(i, getString(R.string.feedback_mail_dialog_title)));
             } catch (android.content.ActivityNotFoundException ex) {
-                ErrorHandle.getInstance().Error(LOG_TAG, ex.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, ex);
                 Snackbar.make(getView(), getString(R.string.feedback_mail_error), Snackbar.LENGTH_SHORT).show();
+            }
+        }
+
+        private void openMarket(String id){
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                        "market://details?id=" + id)));
+            }catch (ActivityNotFoundException e){
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                        "https://play.google.com/store/apps/details?id=" + id)));
+            }catch (Exception e){
+                Snackbar.make(getView(), getString(R.string.rateError), Snackbar.LENGTH_LONG).show();
+                ErrorHandle.getInstance().Error(LOG_TAG, e);
             }
         }
 
@@ -175,11 +163,13 @@ public class Preferences extends PreferenceActivity {
             ((ImageButton) alertDialog.findViewById(R.id.button_SHC)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openMarket(getString(R.string.SHCId));
+//                    openMarket(getString(R.string.SHCId));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                            "https://play.google.com/apps/testing/com.ayoprez.speechhelpcards")));
                 }
             });
 
-            ((ImageButton) alertDialog.findViewById(R.id.button_DeilyQuote)).setOnClickListener(new View.OnClickListener() {
+            ((ImageButton) alertDialog.findViewById(R.id.button_DeilyLang)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     openMarket(getString(R.string.LangId));

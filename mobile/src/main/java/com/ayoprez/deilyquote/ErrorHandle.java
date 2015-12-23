@@ -16,20 +16,23 @@ public class ErrorHandle {
         return new ErrorHandle();
     }
 
-    public void Error(String where, String error){
-        Log.e(where, error);
+    public void Error(String where, Throwable error){
+        Log.e(where, error.toString());
 
         Crashlytics.getInstance().core.getIdentifier();
-        Crashlytics.getInstance().core.log(where + " - " + error);
+        Crashlytics.getInstance().core.logException(error);
+        Crashlytics.getInstance().core.log(where + " - " + error.toString());
     }
 
     public void informUser(Context context, String message){
+        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        };
+
         Utils.Create_Dialog_DoNotFinishActivity(context, message, context.getString(android.R.string.ok),
-                context.getString(R.string.errorDefault), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+            context.getString(R.string.errorDefault), onClickListener);
     }
 }

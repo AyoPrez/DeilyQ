@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="eula_data">EULA</string>
-    <string name="eula_impresum">Última actualización: 26 - 08 - 2015 \n\n
+    <string name="eula_impressum">Última actualización: 26 - 08 - 2015 \n\n
         Ayoze Pérez Rodríguez(en adelante "EL DESARROLLADOR") \n
         con dirección Teichgraben, 4, Jena, Alemania, \n
         con DNI 42217341J. \n
@@ -104,8 +104,8 @@
     <string name="eula_ten">10. CONTÁCTAME</string>
     <string name="eula_ten_text">Si usted tiene alguna pregunta sobre estos términos de la EULA, puede ponerse en contacto con EL DESARROLLADOR a través de los datos que se encuentran al principio. \n</string>
 
-    <string name="privacy">Política de privacidad</string>
-    <string name="privacy_introduction">Tu privacidad es lo más importante para mi, Ayoze Pérez Rodríguez, y por esa razón quiero explicarte claramente qué datos requiero del usuario, porqué hago eso y cómo uso esas datos. \n</string>
+    <string name="privacy_introduction">Política de privacidad</string>
+    <string name="privacy_introduction_text">Tu privacidad es lo más importante para mi, Ayoze Pérez Rodríguez, y por esa razón quiero explicarte claramente qué datos requiero del usuario, porqué hago eso y cómo uso esas datos. \n</string>
 
     <string name="privacy_one">1.QUIÉN SOY</string>
     <string name="privacy_one_text">Ayoze Pérez Rodríguez(en adelante "THE DEVELOPER")\n

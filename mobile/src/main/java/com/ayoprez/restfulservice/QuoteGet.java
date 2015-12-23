@@ -42,13 +42,17 @@ public class QuoteGet {
 
             @Override
             public void success(UserQuotes quote, Response response) {
-                EventBus.getDefault().post(quote);
+                if(quote.getQuote() != null) {
+                    EventBus.getDefault().post(quote);
+                }else{
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, error);
             }
         });
     }
@@ -60,13 +64,17 @@ public class QuoteGet {
 
             @Override
             public void success(UserQuotes quote, Response response) {
-                EventBus.getDefault().post(quote);
+                if(quote.getQuote() != null) {
+                    EventBus.getDefault().post(quote);
+                }else{
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, error);
             }
         });
     }
@@ -81,7 +89,7 @@ public class QuoteGet {
             @Override
             public void failure(RetrofitError error) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, error);
             }
         });
     }

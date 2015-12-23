@@ -50,12 +50,13 @@ public class QuoteScreen extends AbstractBaseMainActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         speak.destroy();
+        super.onDestroy();
     }
 
     //Facebook doesnt work
     @OnClick(R.id.buttonShare_QuoteScreen) void buttonShare(){
+        AnswerHandle.Answer("Shared quote");
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, this.getString(R.string.app_name));
@@ -65,6 +66,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
     }
 
     @OnClick(R.id.buttonSave_QuoteScreen) void buttonSave(){
+        AnswerHandle.Answer("Quote saved");
         Integer quoteId = bundle.getInt(QUOTE_ID_KEY);
         int id_user = Integer.valueOf(new SessionManager(this).getUserDetails().get("id"));
 
@@ -111,7 +113,7 @@ public class QuoteScreen extends AbstractBaseMainActivity {
                 try {
                     Thread.sleep(8000);
                 } catch (InterruptedException e) {
-                    ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+                    ErrorHandle.getInstance().Error(LOG_TAG, e);
                 }
 
                 runOnUiThread(new Runnable() {

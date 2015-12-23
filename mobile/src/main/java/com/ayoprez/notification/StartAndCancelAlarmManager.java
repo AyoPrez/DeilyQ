@@ -40,7 +40,7 @@ public class StartAndCancelAlarmManager extends TimeCalculator {
             alarmIntent.putExtra("id_u", sessionManager.getUserDetails().get("id"));
         }else{
             alarmIntent.putExtra("id_U", 0);
-            ErrorHandle.getInstance().Error(LOG_TAG, "User 0");
+            ErrorHandle.getInstance().Error(LOG_TAG, new Exception("User 0"));
         }
         return alarmIntent;
     }
@@ -53,7 +53,7 @@ public class StartAndCancelAlarmManager extends TimeCalculator {
                     pendingIntent);
         }catch(Exception e){
             ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-            ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
             return false;
         }
         return true;

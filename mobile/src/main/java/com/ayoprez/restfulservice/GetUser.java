@@ -46,14 +46,14 @@ public class GetUser {
 
                 } else {
                     ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                    ErrorHandle.getInstance().Error(LOG_TAG, "GetUser = null");
+                    ErrorHandle.getInstance().Error(LOG_TAG, new Exception("GetUser = null"));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                ErrorHandle.getInstance().Error(LOG_TAG, error.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, error);
             }
         });
     }

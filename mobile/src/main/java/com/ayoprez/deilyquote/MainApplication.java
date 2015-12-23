@@ -1,13 +1,13 @@
 package com.ayoprez.deilyquote;
 
-import android.support.multidex.MultiDexApplication;
+import android.app.Application;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
  * Created by AyoPrez on 11/07/15.
  */
-public class MainApplication extends MultiDexApplication {
+public class MainApplication extends Application {
 
     @Override
     public void onCreate() {
@@ -18,7 +18,6 @@ public class MainApplication extends MultiDexApplication {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
-//        LeakCanary.install(this);
     }
 
 }

@@ -12,12 +12,12 @@ import com.ayoprez.login.LoginActivity;
 import com.ayoprez.newMoment.NewMomentActivity;
 import com.ayoprez.preferences.Preferences;
 import com.ayoprez.userProfile.ProfileScreen;
-import com.ayoprez.utils.Tests;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemLongClick;
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AbstractBaseMainActivity {
 
@@ -34,6 +34,7 @@ public class MainActivity extends AbstractBaseMainActivity {
     @OnItemLongClick(R.id.reviewList)
     boolean longItem(int position){
         new ReviewList(reviewList).showAlertDialogToDeleteItem(this, position);
+        AnswerHandle.Answer("Long click in MainActivity");
         return true;
     }
 
@@ -49,12 +50,19 @@ public class MainActivity extends AbstractBaseMainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
 
         initToolbar();
 
         new CreateDatabase(this);
 
         new ReviewList(reviewList).showReviewList(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -73,12 +81,19 @@ public class MainActivity extends AbstractBaseMainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_signIn:
+                AnswerHandle.Answer("SignIn");
                 goToNewScreen(!sessionManager.isLoggedIn() ? LoginActivity.class : ProfileScreen.class);
                 return true;
             case R.id.action_settings:
+                AnswerHandle.Answer("Settings");
                 startActivity(new Intent(this, Preferences.class));
                 return true;
         }
         return true;
+    }
+
+    public void onEvent(ErrorMessage message){
+        ErrorHandle.getInstance().informUser(this, message.getMessage());
+        EventBus.getDefault().unregister(this);
     }
 }

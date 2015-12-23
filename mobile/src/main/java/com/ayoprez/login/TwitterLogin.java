@@ -3,6 +3,7 @@ package com.ayoprez.login;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.GetUser;
@@ -77,7 +78,7 @@ public class TwitterLogin {
             @Override
             public void failure(TwitterException exception) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
-                ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, exception);
             }
         });
     }
@@ -88,6 +89,7 @@ public class TwitterLogin {
         getLoginActivity().twitterLoginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
+                AnswerHandle.Answer("Login", "Method", "Twitter");
                 user = new User(result.data.getUserName(), String.valueOf(result.data.getUserId()));
 
                 new GetUser(context).sendUserDataRequest(user.getSocial_Id(), TYPE_ID, user.getName());
@@ -97,7 +99,7 @@ public class TwitterLogin {
             @Override
             public void failure(TwitterException exception) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
-                ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, exception);
             }
         });
     }

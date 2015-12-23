@@ -1,7 +1,5 @@
 package com.ayoprez.notification;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +7,6 @@ import android.util.Log;
 
 import com.ayoprez.database.UserMomentsRepository;
 import com.ayoprez.deilyquote.ErrorHandle;
-import com.ayoprez.utils.TimeCalculator;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
            reSchedule(context);
         }else{
             Log.e("", "It is not a reboot intent");
-            ErrorHandle.getInstance().Error(LOG_TAG, "It is not a reboot intent");
+            ErrorHandle.getInstance().Error(LOG_TAG, new Exception("It is not a reboot intent"));
         }
     }
 

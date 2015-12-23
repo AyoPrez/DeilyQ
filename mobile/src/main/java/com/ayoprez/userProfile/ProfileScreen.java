@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.preferences.Preferences;
@@ -22,6 +23,7 @@ import butterknife.OnClick;
 public class ProfileScreen extends AbstractBaseMainActivity{
 
     @OnClick(R.id.b_save) void mSavedButton(){
+        AnswerHandle.Answer("Saved quotes");
         Intent savedIntent = new Intent(this, SavedQuotesScreen.class);
         startActivity(savedIntent);
         finish();
@@ -68,10 +70,12 @@ public class ProfileScreen extends AbstractBaseMainActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_signIn:
+                AnswerHandle.Answer("Logout");
                 sessionManager.logoutUser();
                 finish();
                 return true;
             case R.id.action_settings:
+                AnswerHandle.Answer("Settings");
                 Intent i = new Intent(this, Preferences.class);
                 startActivity(i);
                 return true;

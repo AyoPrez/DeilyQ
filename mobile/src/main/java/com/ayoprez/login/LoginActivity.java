@@ -3,8 +3,10 @@ package com.ayoprez.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
@@ -16,6 +18,7 @@ import butterknife.OnClick;
  * Created by AyoPrez on 22/05/15.
  */
 public class LoginActivity extends AbstractBaseMainActivity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     public TwitterLoginButton twitterLoginButton;
     private FacebookLogin facebookLogin = new FacebookLogin(this);
@@ -23,9 +26,9 @@ public class LoginActivity extends AbstractBaseMainActivity {
 
     @OnClick(R.id.login_continue)
     void loginContinue(){
+        AnswerHandle.Answer("Login", "Method", "Without login");
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
-        finish();
     }
 
     @Override
@@ -34,6 +37,15 @@ public class LoginActivity extends AbstractBaseMainActivity {
         facebookLogin.initFacebook();
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        try {
+            if (getUserId() != 0) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+            }
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+        }
 
         facebookLogin.facebookLogin();
         twitterLogin.twitterLogin();

@@ -3,6 +3,7 @@ package com.ayoprez.login;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.GetUser;
@@ -74,19 +75,20 @@ public class FacebookLogin {
         facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                AnswerHandle.Answer("Login", "Method", "Facebook");
                 getUserData();
             }
 
             @Override
             public void onCancel() {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
-                ErrorHandle.getInstance().Error(LOG_TAG, "Cancel");
+                ErrorHandle.getInstance().Error(LOG_TAG, new Exception("Cancel"));
             }
 
             @Override
             public void onError(FacebookException exception) {
                 ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
-                ErrorHandle.getInstance().Error(LOG_TAG, exception.toString());
+                ErrorHandle.getInstance().Error(LOG_TAG, exception);
             }
         });
     }
@@ -103,7 +105,7 @@ public class FacebookLogin {
 
                 } catch (JSONException e) {
                     ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
-                    ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+                    ErrorHandle.getInstance().Error(LOG_TAG, e);
                 }
             }
         });

@@ -24,32 +24,27 @@ public class NewMomentActivity extends AbstractBaseMainActivity{
 
 	@OnClick(R.id.b_language)
 	void OnButtonLanguageClick(){
-        new Language(context);
+        new Language(this);
     }
     @OnClick(R.id.b_topic)
     void OnButtonTopicClick(){
-        new Topic(context);
+        new Topic(this);
     }
     @OnClick(R.id.b_time)
     void OnButtonTimeClick(){
-        new Moment(context);
+        new Moment(this);
     }
     @OnClick(R.id.b_accept)
     void OnButtonAcceptClick(){
-        new Accept(context).Accept_Dialog(B_Language.getText().toString(),
+        new Accept(this).Accept_Dialog(B_Language.getText().toString(),
                 B_Topic.getText().toString(), B_Time.getText().toString());
     }
-
-
-    protected Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.activity_newmoment);
         ButterKnife.bind(this);
-
-        this.context = this;
 
         initToolbar();
 	}

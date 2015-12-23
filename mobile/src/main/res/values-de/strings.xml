@@ -6,16 +6,16 @@
     <string name="button_topic">Wählen Sie eine Topic</string>
     <string name="button_time">Wählen Sie einen Moment</string>
     <string name="button_accept">Fertig!</string>
-    <string name="deleteMomentDialog">Bist du sicher, du wollst diesen Moment löschen?</string>
+    <string name="deleteMomentDialog">Bist du sicher, dass du diesen Moment löschen wollst?</string>
     <string name="deleteMomentDialogTitle">Moment löschen</string>
     <string name="successSavingMoment">Der Moment haben erfolgreich gespeichert.</string>
     <string name="buttonAcceptDialog">Ok</string>
     <string name="successSavingDialogTitle">Moment gespeichert</string>
 
     <!-- Menu -->
-    <string name="action_login">Log in</string>
+    <string name="action_login">Anmeldung</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="action_logout">Log out</string>
+    <string name="action_logout">Abmelden</string>
 
     <!-- Languages -->
     <string name="Spanish">Spanisch</string>
@@ -25,22 +25,22 @@
     <string name="Italian">Italienisch</string>
 
     <!-- Topics -->
-    <string name="topic1"></string>
-    <string name="topic2"></string>
-    <string name="topic3"></string>
-    <string name="topic4"></string>
-    <string name="topic5"></string>
-    <string name="topic6"></string>
-    <string name="topic7"></string>
-    <string name="topic8"></string>
-    <string name="topic9"></string>
-    <string name="topic10"></string>
+    <string name="topic1">Ein wenig von allem</string>
+    <string name="topic2">Student</string>
+    <string name="topic3">Entrepreneur</string>
+    <string name="topic4">Liebhaber des Lebens</string>
+    <string name="topic5">Eltern</string>
+    <string name="topic6">Verliebt</string>
+    <string name="topic7">Einzelgänger/in</string>
+    <string name="topic8">Spirituell</string>
+    <string name="topic9">Komiker</string>
+    <string name="topic10">Gerecht</string>
 
     <!-- Login activity texts-->
     <string name="Login_FacebookButton">Facebook</string>
     <string name="Login_TwitterButton">Twitter</string>
     <string name="Login_GoogleButton">Google</string>
-    <string name="Login_Continue">-----------------------</string>
+    <string name="Login_Continue">Weiter ohne Anmeldung</string>
 
     <!-- Time -->
     <string name="button_time_accept">Akzeptieren den Moment</string>
@@ -50,20 +50,25 @@
     <string name="dialog_title">Moment Löschen</string>
     <string name="dialog_message">Löschen Sie diesen Moment? Wenn Sie dies tun, erhalten Sie keine Meldungen zu diesem Zeit.</string>
     <string name="dialog_positive_button">Löschen</string>
-    <string name="dialog_negative_button">Stonieren</string>
+    <string name="dialog_negative_button">Absagen</string>
     <string name="new_moment">Neue Moment</string>
 
     <!-- Quote -->
     <string name="notification_text">Öffnen, um ein neues Zitat zu entdecken</string>
     <string name="buttonSave">Ich mag es! Speichern es</string>
     <string name="buttonShare">Teilen</string>
+    <string name="doneDialog">Perfekt. Du hast bereits bekam sie. Dieses Zitat wird dich für immer begleiten.</string>
+    <string name="doneDialogTitle">Zitat gespeichert</string>
+
+    <!-- Saved Quotes-->
+    <string name="no_internet">Sie müssen verbunden sein, um die Zitate anzusehen</string>
+    <string name="saved_quotes_button">Zitat gespeichert</string>
 
     <!-- Errors -->
-    <string name="error_select">Sie müssen Sprache, Füllstands und Zeit wählen</string>
+    <string name="error_select">Sie müssen Sprache, Topic und Moment wählen</string>
     <string name="errorSavingMoment">Es gab einen Fehler, und der Moment, konnte nicht gespeichert werden.</string>
     <string name="errorSavingDialogTitle">Es gab einen Fehle</string>
     <string name="title_activity_word_screen">QuoteScreen</string>
-    <string name="errorDeletingMoment" />
 
     <!-- Preferences -->
     <string-array name="pref_languages">
@@ -81,14 +86,26 @@
     <string name="about_title">Über die App</string>
     <string name="version">Version</string>
     <string name="info">Info</string>
-    <string name="info_message">App gemacht mit Liebe durch AyoPrez. \ n \ n
-                                     Für weitere Informationen, besuchen Sie die Website http://www.ayoprez.com</string>
-    <string name="versionName">1.0</string>
+    <string name="info_message">App macht liebevoll von AyoPrez.\n\n
+                                     Für mehr Informationen, besuchen Sie die Website</string>
+    <string name="versionName">0.1</string>
 
-    <string name="legal_title">Rechtliche und Kontakt</string>
     <string name="terms">Allgemeine Geschäftsbedingungen</string>
     <string name="contact">Kontakt</string>
     <string name="contact_message">Wenn Sie mich kontaktieren wollen können so über den Kontaktsektor meiner Website. </string>
-    <string name="legal_text"></string>
-    <string name="errorDefault">Es gab einen Fehler</string>
+    <string name="feedback">Feedback senden</string>
+    <string name="made_in">Hergestellt in Deutschland</string>
+    <string name="more_of_Ayoprez">Weitere Apps von AyoPrez</string>
+    <string name="developer">Entwickler</string>
+    <string name="rateAtGoogle">Bewerten Sie die App</string>
+    <string name="rateError">Der Play Store konnte nicht geöffnet werden, installieren Sie diese und versuchen Sie es erneut.</string>
+    <string name="feedback_mail_subject">Feedback DeilyQuote</string>
+    <string name="feedback_mail_dialog_title">Feedback senden</string>
+    <string name="feedback_mail_error">Es ist keine E-Mail-Clients installiert</string>
+    <string name="errorDefault">Es gab einen Fehle</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="legal_title">Rechtliche und Kontakt</string>
+    <string name="empty_list">Die Liste ist leer</string>
+    <string name="errorLogin">Es gab einen Fehler beim Login</string>
+    <string name="errorDeletingMoment">Fehler beim Löschen Moment</string>
 </resources>

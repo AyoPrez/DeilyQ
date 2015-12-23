@@ -3,7 +3,6 @@ package com.ayoprez.deilyquote;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ayoprez.database.UserMomentsRepository;
 import com.ayoprez.notification.StartAndCancelAlarmManager;
@@ -43,7 +42,7 @@ public class ReviewList {
                     deleteItemFromDatabase(context, selectedItem);
                     showReviewList(context);
                 } catch (Exception e) {
-                   ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+                   ErrorHandle.getInstance().Error(LOG_TAG, e);
                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
                 }
             }
@@ -58,7 +57,7 @@ public class ReviewList {
             new StartAndCancelAlarmManager(context, getDataFromDatabaseToListView(context).get(selectedItem)).cancelAlarmManager();
             new UserMomentsRepository().deleteSelectedMoment(context, selectedItem);
         }catch(Exception e){
-            ErrorHandle.getInstance().Error(LOG_TAG, e.toString());
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
             ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDeletingMoment));
         }
     }

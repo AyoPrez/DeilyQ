@@ -2,21 +2,21 @@
 <resources>
 
     <string name="app_name">DeilyQuote</string>
-    <string name="moment_review">Revisar momentos</string>
-    <string name="button_language">Elige un idioma</string>
-    <string name="button_topic">Elige un tema</string>
-    <string name="button_time">Elige un momento</string>
-    <string name="button_accept">¡Hecho!</string>
-    <string name="deleteMomentDialogTitle">Borrar momento</string>
-    <string name="deleteMomentDialog">¿Estas seguro que quieres borrar este momento?</string>
-    <string name="successSavingMoment">El momento ha sido guardado satisfactoriamente</string>
-    <string name="buttonAcceptDialog">Aceptar</string>
-    <string name="successSavingDialogTitle">Momento guardado</string>
+    <string name="moment_review">Controllare momenti</string>
+    <string name="button_language">Scegli una lingua</string>
+    <string name="button_topic">Scegli un tema</string>
+    <string name="button_time">Scegli un momento</string>
+    <string name="button_accept">Fatto!</string>
+    <string name="deleteMomentDialogTitle">Elimina momento</string>
+    <string name="deleteMomentDialog">Sicuro che vuoi eliminare questo momento?</string>
+    <string name="successSavingMoment">Il momento è stato eliminato correttamente</string>
+    <string name="buttonAcceptDialog">Accetta</string>
+    <string name="successSavingDialogTitle">Momento salvato</string>
 
     <!--Menu-->
-    <string name="action_login">Iniciar sesión</string>
-    <string name="action_settings">Ajustes</string>
-    <string name="action_logout">Cerrar sesión</string>
+    <string name="action_login">Inizia sessione</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_logout">Chiudi sessione</string>
 
     <!-- Languages -->
     <string name="Spanish">Spagnolo</string>
@@ -26,45 +26,45 @@
     <string name="Italian">Italiano</string>
 
     <!-- Topics -->
-    <string name="topic1"></string>
-    <string name="topic2"></string>
-    <string name="topic3"></string>
-    <string name="topic4"></string>
-    <string name="topic5"></string>
-    <string name="topic6"></string>
-    <string name="topic7"></string>
-    <string name="topic8"></string>
-    <string name="topic9"></string>
-    <string name="topic10"></string>
+    <string name="topic1">Un po\' di tutto</string>
+    <string name="topic2">Studente</string>
+    <string name="topic3">Imprenditore/a</string>
+    <string name="topic4">Amante della vita</string>
+    <string name="topic5">Genitore</string>
+    <string name="topic6">Innamorato/a</string>
+    <string name="topic7">Solitario</string>
+    <string name="topic8">Spirituale</string>
+    <string name="topic9">Comico</string>
+    <string name="topic10">Giusto</string>
 
     <!-- Login activity texts-->
     <string name="Login_FacebookButton">Facebook</string>
     <string name="Login_TwitterButton">Twitter</string>
     <string name="Login_GoogleButton">Google</string>
-    <string name="Login_Continue">Continuar sin iniciar sesión</string>
+    <string name="Login_Continue">Continua senza iniziare sessione</string>
 
     <!-- Time -->
-    <string name="button_time_accept">Aceptar momento</string>
+    <string name="button_time_accept">Accetta il momento</string>
 
     <!-- Review -->
-    <string name="contestDescription">Imagen</string>
-    <string name="dialog_title">Eliminar momento</string>
-    <string name="dialog_message">¿Desea eliminar este momento? Si lo hace, dejará de recibir notificaciones a esa hora.</string>
-    <string name="dialog_positive_button">Eliminar</string>
-    <string name="dialog_negative_button">Cancelar</string>
-    <string name="new_moment">Nuevo momento</string>
+    <string name="contestDescription">Immagine</string>
+    <string name="dialog_title">Cancella momento</string>
+    <string name="dialog_message">Desideri eliminare questo momento? se lo farai non riceverai notifiche</string>
+    <string name="dialog_positive_button">Elimina</string>
+    <string name="dialog_negative_button">Cancella</string>
+    <string name="new_moment">Nuovo momento</string>
 
     <!-- Quote -->
-    <string name="notification_text">Abre para descubrir una nueva cita</string>
-    <string name="buttonSave">¡Me gusta! Guardar</string>
-    <string name="buttonShare">Compartir</string>
+    <string name="notification_text">Apri per scoprire un nuovo citazioni</string>
+    <string name="buttonSave">Mi piace! Salva</string>
+    <string name="buttonShare">Condividi</string>
 
     <!-- Errors -->
-    <string name="error_select">Debe seleccionar idioma, tema y momento</string>
-    <string name="errorSavingMoment">Ha habido un error y no se ha podido guardar el momento</string>
-    <string name="errorSavingDialogTitle">Hubo un error</string>
+    <string name="error_select">Devi scegliere una lingua un tema e un momento</string>
+    <string name="errorSavingMoment">C\'è stato un errore. Non è stato possibile salvare</string>
+    <string name="errorSavingDialogTitle">c\'è stato un errore</string>
     <string name="title_activity_word_screen">QuoteScreen</string>
-    <string name="errorDeletingMoment" />
+    <string name="errorDeletingMoment" >Errore durante l\'eliminazione momento</string>
 
     <!-- Preferences -->
     <string-array name="pref_languages">
@@ -74,22 +74,38 @@
         <item>Francese</item>
         <item>Italiano</item>
     </string-array>
-    <string name="language_category_title">Idiomas</string>
-    <string name="subpreference_language">Cambia el idioma de la aplicación</string>
-    <string name="language">Cambiar idioma</string>
+    <string name="language_category_title">Lingue</string>
+    <string name="subpreference_language">Cambia la lingua dell\'applicazione</string>
+    <string name="language">Cambia lingua</string>
 
-    <string name="about_title">Sobre la aplicación</string>
-    <string name="version">Versión</string>
+    <string name="about_title">Info sull\'App</string>
+    <string name="version">Versione</string>
     <string name="info">Info</string>
-    <string name="info_message">Aplicación hecha con cariño por AyoPrez. \n\n
-                                Para más información, visita la web http://www.ayoprez.com</string>
-    <string name="versionName">1.0</string>
+    <string name="info_message">App generata con amore da AyoPrez. \n\n
+        Per ulteriori informazioni visita la pagina web </string>
+    <string name="versionName">0.1</string>
 
-    <string name="legal_title">Legal and contacto</string>
-    <string name="terms">Términos y condicines</string>
-    <string name="contact">Contacto</string>
-    <string name="contact_message">Si deseas contactar conmigo puedes hacerlo a través de la sección de contacto de mi web. </string>
-    <string name="legal_text"></string>
-    <string name="errorDefault">Il y avait une erreur</string>
+    <string name="legal_title">Norme legali e contatti</string>
+    <string name="terms">Termini e condizioni</string>
+    <string name="contact">Contatti</string>
+    <string name="contact_message">Se desideri contattarmi puoi farlo tramite la mia pagina web</string>
+    <string name="errorDefault">c\'è stato un errore</string>
+
+    <string name="feedback">Inviami la tua opinione</string>
+    <string name="made_in">Realizzato in Germania</string>
+    <string name="more_of_Ayoprez">Altre App di AyoPrez</string>
+    <string name="developer">Sviluppo</string>
+    <string name="rateAtGoogle">Valuta questa App</string>
+    <string name="rateError">Non è stato possibile aprire Play Store. Perfavore riprova a installare.</string>
+    <string name="feedback_mail_subject">Valutazione DeilyQuote</string>
+    <string name="feedback_mail_dialog_title">Invia suggerimenti</string>
+    <string name="feedback_mail_error">Non ci sono clienti di posta elettronica salvati</string>
+    <string name="doneDialog">Perfetto. Fatto. Questo appuntamento verrà salvato</string>
+    <string name="doneDialogTitle">Citazioni salvato</string>
+    <string name="errorLogin">Si è verificato un errore durante la login</string>
+    <string name="no_internet">È necessario essere connessi per vedere le quotazioni</string>
+    <string name="saved_quotes_button">Citazioni salvati</string>
+    <string name="title_activity_settings">Impostazioni</string>
+    <string name="empty_list">L\'elenco è vuoto</string>
 
 </resources>

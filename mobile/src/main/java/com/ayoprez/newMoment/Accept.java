@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.ayoprez.database.UserMomentsRepository;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.notification.StartAndCancelAlarmManager;
 import com.ayoprez.utils.Utils;
@@ -28,6 +29,8 @@ public class Accept {
                     Language,
                     Topic,
                     Utils.TakeOutTimeDots(Time));
+			AnswerHandle.Answer("New moment", "language", Language);
+			AnswerHandle.Answer("New moment", "topic", Topic);
 
             userMomentsRepository.insertOrUpdate(context, userMoments);
 

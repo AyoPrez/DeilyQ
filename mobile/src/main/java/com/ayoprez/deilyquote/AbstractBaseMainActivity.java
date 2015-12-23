@@ -12,8 +12,6 @@ import com.crashlytics.android.Crashlytics;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 
-import java.util.Locale;
-
 import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -40,7 +38,7 @@ public abstract class AbstractBaseMainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
     }
 
-    protected int getUserId(){
+    protected int getUserId() throws Exception{
         return (sessionManager != null) ? Integer.valueOf(sessionManager.getUserDetails().get("id")) : 0;
     }
 

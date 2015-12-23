@@ -25,6 +25,8 @@
     <dimen name="image_no_internet_marginTop">130dp</dimen>
     <dimen name="text_no_internet_size">16sp</dimen>
     <dimen name="text_no_internet_padding">40dp</dimen>
+    <dimen name="empty_savedQuotesList_marginTop">130dp</dimen>
+    <dimen name="empty_savedQuotesList_marginBottom">30dp</dimen>
 
     <!-- Preferences-->
     <dimen name="height_madeIn">70dp</dimen>
