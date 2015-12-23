@@ -7,40 +7,59 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.util.Log;
+import android.view.WindowManager;
 
+import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.ErrorMessage;
 import com.ayoprez.deilyquote.MainActivity;
 
+import de.greenrobot.event.EventBus;
+
 public class Utils {
+	private static final String LOG_TAG = Utils.class.getSimpleName();
 
-	public void Create_Dialog(final Context ctx, String message, String button_title, String dialog_title){
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctx);
-		alertDialogBuilder.setTitle(dialog_title);
-		alertDialogBuilder.setMessage(message);
-		alertDialogBuilder.setPositiveButton(button_title, new OnClickListener(){
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				Intent i = new Intent(ctx, MainActivity.class);
-				ctx.startActivity(i);
-				((Activity)ctx).finish();
-			}
-		});
-						
-		alertDialogBuilder.show();
+	public static void Create_Dialog(final Context ctx, String message, String button_title, String dialog_title){
+
+		try {
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctx);
+			alertDialogBuilder.setTitle(dialog_title);
+			alertDialogBuilder.setMessage(message);
+			alertDialogBuilder.setPositiveButton(button_title, new OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Intent i = new Intent(ctx, MainActivity.class);
+					ctx.startActivity(i);
+					((Activity) ctx).finish();
+				}
+			});
+
+			alertDialogBuilder.show();
+		}catch(Exception e){
+			ErrorHandle.getInstance().Error(LOG_TAG, e);
+		}
 	}
 	
-	public void Create_Dialog_DoNotFinishActivity(final Context ctx, String message,
-												  String button_title, String dialog_title,
-												  DialogInterface.OnClickListener onClickListener){
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctx);
-		alertDialogBuilder.setTitle(dialog_title);
-		alertDialogBuilder.setMessage(message);
-		alertDialogBuilder.setPositiveButton(button_title, onClickListener);
-						
-		alertDialogBuilder.show();
+	public static void Create_Dialog_DoNotFinishActivity(final Context ctx, String message,
+         String button_title, String dialog_title, DialogInterface.OnClickListener onClickListener){
+
+		try {
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ctx);
+			alertDialogBuilder.setTitle(dialog_title);
+			alertDialogBuilder.setMessage(message);
+			alertDialogBuilder.setPositiveButton(button_title, onClickListener);
+
+			alertDialogBuilder.show();
+		}catch(WindowManager.BadTokenException e){
+			Log.e("BadToken", e.toString());
+			EventBus.getDefault().post(new ErrorMessage(message));
+		}catch(Exception e){
+			ErrorHandle.getInstance().Error(LOG_TAG, e);
+		}
 	}
 
-	public String WithZero(int i){
+	public static String WithZero(int i){
 		if(i < 10 && i >= 0){
 			return 0+String.valueOf(i);
 		}else{
@@ -48,12 +67,12 @@ public class Utils {
 		}
 	}
 	
-	public String TakeOutTimeDots(String s){
+	public static String TakeOutTimeDots(String s){
 		int n = s.indexOf(':');
 		return s.substring(0, n) + s.substring(n + 1);
 	}
 
-    public String PutInTimeDots(String s) throws Exception{
+    public static String PutInTimeDots(String s) throws Exception{
         if(s.length() == 4) {
             return s.substring(0, 2) + ":" + s.substring(2, 4);
         } else {
@@ -61,15 +80,13 @@ public class Utils {
         }
     }
 	
-	public int TakeHourFromTime(String time){
+	public static int TakeHourFromTime(String time){
 		String hour = time.substring(0, 2);
-		Log.d("Hour", hour);
 		return Integer.valueOf(hour);
 	}
 	
-	public int TakeMinuteFromTime(String time){
+	public static int TakeMinuteFromTime(String time){
 		String minute = time.substring(3, 5);
-		Log.d("Minute", minute);
 		return Integer.valueOf(minute);
 	}
 }

@@ -2,8 +2,9 @@ package com.ayoprez.login;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
+import com.ayoprez.deilyquote.AnswerHandle;
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.GetUser;
 import com.facebook.AccessToken;
@@ -27,6 +28,8 @@ import java.util.List;
  * Created by AyoPrez on 25/07/15.
  */
 public class FacebookLogin {
+
+    private static final String LOG_TAG = FacebookLogin.class.getSimpleName();
 
     private String TYPE_ID = "f";
     private LoginButton facebookLoginButton;
@@ -72,19 +75,20 @@ public class FacebookLogin {
         facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                AnswerHandle.Answer("Login", "Method", "Facebook");
                 getUserData();
             }
 
             @Override
             public void onCancel() {
-                // App code
-                //Toast.makeText(context, "Come off Facebook! ", Toast.LENGTH_LONG).show();
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
+                ErrorHandle.getInstance().Error(LOG_TAG, new Exception("Cancel"));
             }
 
             @Override
             public void onError(FacebookException exception) {
-                // App code
-                //Toast.makeText(context, "Come error Facebook! ", Toast.LENGTH_LONG).show();
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
+                ErrorHandle.getInstance().Error(LOG_TAG, exception);
             }
         });
     }
@@ -93,8 +97,6 @@ public class FacebookLogin {
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
-                // Application code
-                Log.v("LoginActivity", response.toString());
                 try {
                     //and fill them here like so.
                     user = new User(object.getString("name"), object.getString("id"));
@@ -102,8 +104,8 @@ public class FacebookLogin {
                     new GetUser(context).sendUserDataRequest(user.getSocial_Id(), TYPE_ID, user.getName());
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.v("DeilyLang", "UserDataError: " + e.toString());
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorLogin));
+                    ErrorHandle.getInstance().Error(LOG_TAG, e);
                 }
             }
         });

@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 public class LanguageDialogAdapter extends BaseAdapter {
 
-    private static LayoutInflater inflater = null;
+    private LayoutInflater inflater = null;
     private ArrayList<String> languages;
 
     public LanguageDialogAdapter(Context context, ArrayList<String> languagesList){
         this.languages = languagesList;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public int getCount() {

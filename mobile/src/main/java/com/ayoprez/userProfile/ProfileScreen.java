@@ -2,13 +2,13 @@ package com.ayoprez.userProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.preferences.Preferences;
@@ -22,11 +22,8 @@ import butterknife.OnClick;
  */
 public class ProfileScreen extends AbstractBaseMainActivity{
 
-    //Probar a poner el context en el Abstract
-
-    private Toolbar toolbar;
-
     @OnClick(R.id.b_save) void mSavedButton(){
+        AnswerHandle.Answer("Saved quotes");
         Intent savedIntent = new Intent(this, SavedQuotesScreen.class);
         startActivity(savedIntent);
         finish();
@@ -55,34 +52,30 @@ public class ProfileScreen extends AbstractBaseMainActivity{
         return true;
     }
 
-    private void initToolbar(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    @Override
+    protected void initToolbar(){
+        super.initToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToProfileIntent();
+                goToNewScreen(MainActivity.class);
             }
         });
-    }
-
-    private void backToProfileIntent(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_signIn:
+                AnswerHandle.Answer("Logout");
                 sessionManager.logoutUser();
                 finish();
                 return true;
             case R.id.action_settings:
+                AnswerHandle.Answer("Settings");
                 Intent i = new Intent(this, Preferences.class);
                 startActivity(i);
                 return true;

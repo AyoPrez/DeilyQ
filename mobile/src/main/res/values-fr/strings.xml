@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">DeilyQuote</string>
-    <string name="moment_review">Revisar momentos</string>
-    <string name="button_language">Elige un idioma</string>
-    <string name="button_topic">Elige un tema</string>
-    <string name="button_time">Elige un momento</string>
-    <string name="button_accept">¡Hecho!</string>
-    <string name="deleteMomentDialogTitle">Borrar momento</string>
-    <string name="deleteMomentDialog">¿Estas seguro que quieres borrar este momento?</string>
-    <string name="successSavingMoment">El momento ha sido guardado satisfactoriamente</string>
-    <string name="buttonAcceptDialog">Aceptar</string>
-    <string name="successSavingDialogTitle">Momento guardado</string>
+    <string name="moment_review">Vérifiez moments</string>
+    <string name="button_language">Choisissez un langue</string>
+    <string name="button_topic">Choisissez un thème</string>
+    <string name="button_time">Choisissez un moment</string>
+    <string name="button_accept">Fait!</string>
+    <string name="deleteMomentDialogTitle">supprimer moments</string>
+    <string name="deleteMomentDialog">Êtes-vous sûr de vouloir supprimer ce moment?</string>
+    <string name="successSavingMoment">Le moment a bien été enregistré.</string>
+    <string name="buttonAcceptDialog">Accepter</string>
+    <string name="successSavingDialogTitle">Gain de moment</string>
 
     <!--Menu-->
-    <string name="action_login">Iniciar sesión</string>
-    <string name="action_settings">Ajustes</string>
-    <string name="action_logout">Cerrar sesión</string>
+    <string name="action_login">Commencer la session</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="action_logout">Fermer la session</string>
 
     <!-- Languages -->
     <string name="Spanish">Espagnol</string>
@@ -41,30 +40,36 @@
     <string name="Login_FacebookButton">Facebook</string>
     <string name="Login_TwitterButton">Twitter</string>
     <string name="Login_GoogleButton">Google</string>
-    <string name="Login_Continue">Continuar sin iniciar sesión</string>
+    <string name="Login_Continue">Continuer sans commencer la session</string>
 
     <!-- Time -->
-    <string name="button_time_accept">Aceptar momento</string>
+    <string name="button_time_accept">Accepter moment</string>
 
     <!-- Review -->
-    <string name="contestDescription">Imagen</string>
-    <string name="dialog_title">Eliminar momento</string>
-    <string name="dialog_message">¿Desea eliminar este momento? Si lo hace, dejará de recibir notificaciones a esa hora.</string>
-    <string name="dialog_positive_button">Eliminar</string>
-    <string name="dialog_negative_button">Cancelar</string>
-    <string name="new_moment">Nuevo momento</string>
+    <string name="contestDescription">Image</string>
+    <string name="dialog_title">Supprimer moment</string>
+    <string name="dialog_message">Supprimer ce moment? Si vous le faites, vous cesserez de recevoir des notifications à cette temps.</string>
+    <string name="dialog_positive_button">Effacer</string>
+    <string name="dialog_negative_button">Annuler</string>
+    <string name="new_moment">Nouveau moment</string>
 
     <!-- Quote -->
-    <string name="notification_text">Abre para descubrir una nueva cita</string>
-    <string name="buttonSave">¡Me gusta! Guardar</string>
-    <string name="buttonShare">Compartir</string>
+    <string name="notification_text">Ouvre pour révéler un nouveau citation</string>
+    <string name="buttonSave">J\'aime! Sauvegarder</string>
+    <string name="buttonShare">Partager</string>
+    <string name="doneDialog">Parfait. Ce citation sera avec vous pour toujours</string>
+    <string name="doneDialogTitle">Citation sauvé</string>
+
+    <!-- Saved Quotes-->
+    <string name="no_internet">Vous devez être connecté pour voir les citation</string>
+    <string name="saved_quotes_button">Citation sauvé</string>
 
     <!-- Errors -->
-    <string name="error_select">Debe seleccionar idioma, tema y momento</string>
-    <string name="errorSavingMoment">Ha habido un error y no se ha podido guardar el momento</string>
-    <string name="errorSavingDialogTitle">Hubo un error</string>
+    <string name="error_select">Vous devez sélectionner la langue, le sujet et le moment</string>
+    <string name="errorSavingMoment">Il ya eu une erreur et a été incapable de sauvé le moment</string>
+    <string name="errorSavingDialogTitle">Il y avait une erreur</string>
     <string name="title_activity_word_screen">QuoteScreen</string>
-    <string name="errorDeletingMoment" />
+    <string name="errorDeletingMoment" >Erreur moment suppression</string>
 
     <!-- Preferences -->
     <string-array name="pref_languages">
@@ -74,21 +79,33 @@
         <item>Français</item>
         <item>Italien</item>
     </string-array>
-    <string name="language_category_title">Idiomas</string>
-    <string name="subpreference_language">Cambia el idioma de la aplicación</string>
-    <string name="language">Cambiar idioma</string>
+    <string name="language_category_title">Langues</string>
+    <string name="subpreference_language">Changer la langue de l\'application</string>
+    <string name="language">Changer langue</string>
 
-    <string name="about_title">Sobre la aplicación</string>
-    <string name="version">Versión</string>
+    <string name="about_title">A propos de l\'application</string>
+    <string name="version">Version</string>
     <string name="info">Info</string>
-    <string name="info_message">Aplicación hecha con cariño por AyoPrez. \n\n
-                                Para más información, visita la web http://www.ayoprez.com</string>
-    <string name="versionName">1.0</string>
+    <string name="info_message">Demande faite avec amour par AyoPrez. \n\n
+        Pour plus d\'informations, visitez le site Web </string>
+    <string name="versionName">0.1</string>
 
-    <string name="legal_title">Legal and contacto</string>
-    <string name="terms">Términos y condicines</string>
-    <string name="contact">Contacto</string>
-    <string name="contact_message">Si deseas contactar conmigo puedes hacerlo a través de la sección de contacto de mi web. </string>
-    <string name="legal_text"></string>
+    <string name="legal_title">Conditions d\'utilisation et le contact</string>
+    <string name="terms">Termes et Conditions</string>
+    <string name="contact">Contact</string>
+    <string name="contact_message">Si vous voulez me contacter peux le faire à travers la section de mon site de contact.</string>
+    <string name="errorDefault">C\'era un errore</string>
 
+    <string name="feedback">Envoyer des commentaires</string>
+    <string name="made_in">Fabriqué en Allemagne.</string>
+    <string name="more_of_Ayoprez">Suivi applications de AyoPrez</string>
+    <string name="developer">Développeur</string>
+    <string name="rateAtGoogle">Évaluer l\'application</string>
+    <string name="rateError">Impossible d\'ouvrir l\'app store. S\'il vous plaît, installez-le et essayez à nouveau.</string>
+    <string name="feedback_mail_subject">Feedback DeilyQuote</string>
+    <string name="feedback_mail_dialog_title">Envoyez vos commentaires</string>
+    <string name="feedback_mail_error">Aucun client de messagerie installé</string>
+    <string name="errorLogin">Il y avait une erreur lors de la connexion</string>
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="empty_list">La liste est vide</string>
 </resources>

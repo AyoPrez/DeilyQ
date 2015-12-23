@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class TopicDialogAdapter extends BaseAdapter {
 
-    private static LayoutInflater inflater = null;
+    private LayoutInflater inflater = null;
     private ArrayList<String> topics;
 
     public TopicDialogAdapter(Context context, ArrayList<String> topicsList){
@@ -42,7 +42,6 @@ public class TopicDialogAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.item_dialog_language, null);
 
         TextView text = (TextView) view.findViewById(R.id.tV_language_newMoment);
-//        ImageView images = (ImageView) view.findViewById(R.id.iV_flag_newMoment);
 
         text.setText(topics.get(position));
 

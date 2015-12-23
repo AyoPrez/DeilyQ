@@ -1,17 +1,20 @@
 package com.ayoprez.deilyquote;
 
+import android.util.Log;
+
 import java.util.Locale;
 
 /**
  * Created by AyoPrez on 10/09/15.
  */
 public class DetectDeviceLanguage {
+    public static final String LOG_TAG = DetectDeviceLanguage.class.getSimpleName();
 
-    public String getISO3Language(){
+    public static String getISO3Language(){
         return Locale.getDefault().getISO3Language();
     }
 
-    public Locale getLocale(String language){
+    public static Locale getLocale(String language){
         if(language.length() == 3){
            return getLocaleFromISO3(language);
         }else{
@@ -19,7 +22,7 @@ public class DetectDeviceLanguage {
         }
     }
 
-    private Locale getLocaleFromString(String language){
+    public static Locale getLocaleFromString(String language){
 
         switch (language.toLowerCase()) {
             case "spanish":
@@ -37,16 +40,15 @@ public class DetectDeviceLanguage {
         }
     }
 
-    //TODO revisar que las letras sean las correctas
-    private Locale getLocaleFromISO3(String ISO3){
+    public static Locale getLocaleFromISO3(String ISO3){
         switch (ISO3.toLowerCase()){
             case "spa":
                 return new Locale("es");
-            case "ger":
+            case "deu":
                 return new Locale("de");
             case "ita":
                 return new Locale("it");
-            case "fre":
+            case "fra":
                 return new Locale("fr");
             case "eng":
                 return new Locale("en");

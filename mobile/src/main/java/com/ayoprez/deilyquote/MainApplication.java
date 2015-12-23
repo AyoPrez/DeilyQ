@@ -18,7 +18,6 @@ public class MainApplication extends Application {
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
-//        LeakCanary.install(this);
     }
 
 }

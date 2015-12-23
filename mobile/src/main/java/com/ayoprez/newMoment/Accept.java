@@ -4,22 +4,21 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.ayoprez.database.UserMomentsRepository;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.R;
-import com.ayoprez.utils.Utils;
 import com.ayoprez.notification.StartAndCancelAlarmManager;
+import com.ayoprez.utils.Utils;
 
 import deilyquote.UserMoments;
 
 public class Accept {
 
 	private Context context;
-	private Utils UTILS;
 	
 	public Accept(Context context){
 		this.context = context;
-		this.UTILS = new Utils();
 	}
-	
+
 	public void Accept_Dialog(String Language, final String Topic, String Time){
 		UserMomentsRepository userMomentsRepository = new UserMomentsRepository();
 
@@ -29,16 +28,18 @@ public class Accept {
                     userMomentsRepository.getLastId(context),
                     Language,
                     Topic,
-                    UTILS.TakeOutTimeDots(Time));
+                    Utils.TakeOutTimeDots(Time));
+			AnswerHandle.Answer("New moment", "language", Language);
+			AnswerHandle.Answer("New moment", "topic", Topic);
 
             userMomentsRepository.insertOrUpdate(context, userMoments);
 
 			if(new StartAndCancelAlarmManager(context, userMoments).startAlarmManager(Time)){
-                UTILS.Create_Dialog(context, context.getString(R.string.successSavingMoment),
+                Utils.Create_Dialog(context, context.getString(R.string.successSavingMoment),
                         context.getString(R.string.buttonAcceptDialog),
                         context.getString(R.string.successSavingDialogTitle));
             }else{
-                UTILS.Create_Dialog(context, context.getString(R.string.errorSavingMoment),
+                Utils.Create_Dialog(context, context.getString(R.string.errorSavingMoment),
                         context.getString(R.string.buttonAcceptDialog),
                         context.getString(R.string.errorSavingDialogTitle));
             }

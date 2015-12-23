@@ -1,12 +1,12 @@
 package com.ayoprez.restfulservice;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.R;
 import com.ayoprez.login.LoginActivity;
 import com.ayoprez.login.User;
 
-import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -17,6 +17,8 @@ import retrofit.client.Response;
  */
 public class GetUser {
     public static final String ENDPOINT = "http://deilyquote.ayoprez.com/api/index.php/";
+
+    private static final String LOG_TAG = GetUser.class.getSimpleName();
 
     private UserAPI userAPI;
     private Context context;
@@ -43,16 +45,15 @@ public class GetUser {
                     ((LoginActivity)context).startSession(context, new User(userName, user.getId_U()));
 
                 } else {
-                    //Crashlitics
-                    Log.e("DeilyLang", "Error: GetUser = null");
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+                    ErrorHandle.getInstance().Error(LOG_TAG, new Exception("GetUser = null"));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.e("RequestError", "Error: " + error.getMessage());
-                //Crashlytics
-                EventBus.getDefault().post(error);
+                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+                ErrorHandle.getInstance().Error(LOG_TAG, error);
             }
         });
     }

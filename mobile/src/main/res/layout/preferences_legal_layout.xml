@@ -16,8 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_data"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -25,8 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_introduction"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -34,8 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="@string/eula_one"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -43,8 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_one_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -52,8 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_two"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -61,8 +68,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_two_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -70,8 +78,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_three"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -79,8 +89,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_three_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -88,8 +99,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_four"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -97,8 +110,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_four_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -106,8 +120,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_five"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -115,8 +131,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_five_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -124,8 +141,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -133,8 +152,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
@@ -142,44 +162,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six_one"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/legal_titles_margin"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:id="@+id/textView_legal16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six_one_text"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:id="@+id/textView_legal17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six_two"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/legal_titles_margin"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:id="@+id/textView_legal18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_six_two_text"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:id="@+id/textView_legal19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_seven"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
@@ -187,178 +219,188 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
             android:text="@string/eula_seven_text"
+            android:textColor="@color/white"
+            android:textSize="15sp"
             android:layout_marginBottom="@dimen/legal_titles_margin"
             android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal21"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_eight"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/eula_nine"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal22"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_eight_text"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/eula_nine_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal23"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_nine"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/eula_ten"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal24"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_nine_text"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/eula_ten_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal25"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_ten"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_introduction"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingTop="30dp"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal26"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/eula_ten_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_introduction_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal27"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_introduction"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_one"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal28"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_introduction_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
-        <TextView
-            android:id="@+id/textView_legal29"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_one"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_one_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal30"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_one_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
-        <TextView
-            android:id="@+id/textView_legal31"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_two"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_two"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal32"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_two_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_two_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal33"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_three"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_three"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal34"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_three_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_three_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
         <TextView
-            android:id="@+id/textView_legal35"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_four"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_four"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal36"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_four_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+                android:id="@+id/textView_legal34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_four_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
+        <TextView
+                android:id="@+id/textView_legal35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_five"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/legal_titles_margin"/>
 
         <TextView
-            android:id="@+id/textView_legal37"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_five"
-            android:layout_margin="@dimen/legal_titles_margin"/>
+                android:id="@+id/textView_legal36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/privacy_five_text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/legal_titles_margin"
+                android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
 
-        <TextView
-            android:id="@+id/textView_legal38"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/black"
-            android:text="@string/privacy_five_text"
-            android:layout_marginBottom="@dimen/legal_titles_margin"
-            android:lineSpacingExtra="@dimen/legal_content_lines_spacing"/>
-
-    </LinearLayout>
+        </LinearLayout>
 
 </ScrollView>

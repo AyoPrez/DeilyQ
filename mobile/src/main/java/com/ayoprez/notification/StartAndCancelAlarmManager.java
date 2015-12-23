@@ -5,23 +5,29 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.R;
 import com.ayoprez.login.SessionManager;
+import com.ayoprez.utils.TimeCalculator;
 
 import deilyquote.UserMoments;
 
 /**
  * Created by Ayoze on 29/12/14.
  */
-public class StartAndCancelAlarmManager extends TimeCalculator{
+public class StartAndCancelAlarmManager extends TimeCalculator {
+    private static final String LOG_TAG = StartAndCancelAlarmManager.class.getSimpleName();
 
     private PendingIntent pendingIntent;
     private AlarmManager alarmManager;
     private SessionManager sessionManager;
+    private Context context;
 
     public StartAndCancelAlarmManager(Context context, UserMoments userMoments){
+        this.context = context;
         this.sessionManager = new SessionManager(context);
 
-        int requestId = (int) (userMoments.getId() - 0);
+        int requestId = (int) (userMoments.getId() - 0); //I use "-0" to pass from long to int
         pendingIntent = PendingIntent.getBroadcast(context, requestId, startIntent(context, userMoments), PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     }
@@ -34,6 +40,7 @@ public class StartAndCancelAlarmManager extends TimeCalculator{
             alarmIntent.putExtra("id_u", sessionManager.getUserDetails().get("id"));
         }else{
             alarmIntent.putExtra("id_U", 0);
+            ErrorHandle.getInstance().Error(LOG_TAG, new Exception("User 0"));
         }
         return alarmIntent;
     }
@@ -45,6 +52,8 @@ public class StartAndCancelAlarmManager extends TimeCalculator{
                     AlarmManager.INTERVAL_DAY,
                     pendingIntent);
         }catch(Exception e){
+            ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
             return false;
         }
         return true;

@@ -43,7 +43,6 @@ public class SavedQuotesRecyclerViewAdapter extends RecyclerView.Adapter<SavedQu
                 showQuoteInScreen(position);
             }
         });
-
     }
 
     @Override
@@ -73,5 +72,4 @@ public class SavedQuotesRecyclerViewAdapter extends RecyclerView.Adapter<SavedQu
             Author = (TextView) v.findViewById(R.id.textView_savedQuote_author);
         }
     }
-
 }

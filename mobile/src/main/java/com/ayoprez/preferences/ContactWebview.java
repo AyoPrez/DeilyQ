@@ -50,20 +50,19 @@ public class ContactWebview extends Activity {
         switch (language){
             case 1:
                 //Spanish
-                webView.loadUrl("http://m.ayoprez.com/es/contacto/");
+                webView.loadUrl("http://ayoprez.com/es/contacto/");
                 setContentView(mWebView);
                 break;
 
             case 2:
                 //German
-                webView.loadUrl("http://m.ayoprez.com/de/kontakt/");
+                webView.loadUrl("http://ayoprez.com/de/kontakt/");
                 setContentView(mWebView);
                 break;
 
             default:
-                webView.loadUrl("http://m.ayoprez.com/en/contact/");
+                webView.loadUrl("http://ayoprez.com/en/contact/");
                 setContentView(mWebView);
         }
     }
-
 }

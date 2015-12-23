@@ -1,115 +1,68 @@
 package com.ayoprez.deilyquote;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ayoprez.database.CreateDatabase;
-import com.ayoprez.database.UserMomentsRepository;
 import com.ayoprez.login.LoginActivity;
 import com.ayoprez.newMoment.NewMomentActivity;
-import com.ayoprez.notification.StartAndCancelAlarmManager;
 import com.ayoprez.preferences.Preferences;
 import com.ayoprez.userProfile.ProfileScreen;
-import com.ayoprez.utils.Tests;
-import com.ayoprez.utils.Utils;
-import com.crashlytics.android.Crashlytics;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemLongClick;
-import deilyquote.UserMoments;
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AbstractBaseMainActivity {
 
-    @Bind(R.id.reviewList) ListView mReviewList;
+    @Bind(R.id.reviewList)
+    ListView reviewList;
 
-    @OnClick(R.id.b_main) void mMomentsButton(){
+    @OnClick(R.id.b_main)
+    void mMomentsButton(){
         Intent newMomentIntent = new Intent(this, NewMomentActivity.class);
         startActivity(newMomentIntent);
         this.finish();
     }
 
-    @OnItemLongClick(R.id.reviewList) boolean longItem(int position){
-        showAlertDialogToDeleteItem(this, position);
+    @OnItemLongClick(R.id.reviewList)
+    boolean longItem(int position){
+        new ReviewList(reviewList).showAlertDialogToDeleteItem(this, position);
+        AnswerHandle.Answer("Long click in MainActivity");
         return true;
     }
 
     //Test
-    //TODO hide
-    @OnClick(R.id.buttonn) void newNotification(){
-        new Tests().testNotification(this);
-    }
-
-    private ReviewAdapter mReviewAdapter;
-    private Toolbar toolbar;
+    //hide
+//    @OnClick(R.id.buttonn)
+//    void newNotification(){
+//        new Tests().testNotification(this);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
+        initToolbar();
 
         new CreateDatabase(this);
 
-        showReviewList(this);
+        new ReviewList(reviewList).showReviewList(this);
     }
 
-    public List<UserMoments> getDataFromDatabaseToListView(Context context) {
-        return new UserMomentsRepository().getAllMoments(context);
-    }
-
-    private void showReviewList(Context context) {
-        mReviewAdapter = new ReviewAdapter(context, getDataFromDatabaseToListView(context));
-        mReviewList.setAdapter(mReviewAdapter);
-    }
-
-    public void showAlertDialogToDeleteItem(final Context context, final int selectedItem) {
-        DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                try {
-                    deleteItemFromDatabase(context, selectedItem);
-                    showReviewList(context);
-                } catch (Exception e) {
-                    //TODO Change for Snackbar
-                    Toast.makeText(context, getString(R.string.errorDeletingMoment), Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-
-        new Utils().Create_Dialog_DoNotFinishActivity(this, getString(R.string.deleteMomentDialog),
-                getString(android.R.string.yes), getString(R.string.deleteMomentDialogTitle), onClickListener);
-
-    }
-
-    private void deleteItemFromDatabase(Context context, int selectedItem) {
-        try {
-            new StartAndCancelAlarmManager(context, getDataFromDatabaseToListView(context).get(selectedItem)).cancelAlarmManager();
-            new UserMomentsRepository().deleteSelectedMoment(context, selectedItem);
-        }catch(Exception e){
-            //TODO Crashlytics
-            Crashlytics.getInstance();
-            Log.e("DeilyLang", "Error deleting: " + e);
-        }
-    }
-
-    public ListView getListView(){
-        return mReviewList;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -119,11 +72,8 @@ public class MainActivity extends AbstractBaseMainActivity {
 
         MenuItem loginItem = menu.findItem(R.id.action_signIn);
 
-        if(sessionManager.isLoggedIn()) {
-            loginItem.setTitle(getUserName());
-        }else{
-            loginItem.setTitle(getString(R.string.action_login));
-        }
+        loginItem.setTitle(sessionManager.isLoggedIn() ? getUserName() : getString(R.string.action_login));
+
         return true;
     }
 
@@ -131,18 +81,19 @@ public class MainActivity extends AbstractBaseMainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_signIn:
-                if(!sessionManager.isLoggedIn()){
-                    goToNewScreen(LoginActivity.class);
-                }else{
-                    goToNewScreen(ProfileScreen.class);
-                }
-
+                AnswerHandle.Answer("SignIn");
+                goToNewScreen(!sessionManager.isLoggedIn() ? LoginActivity.class : ProfileScreen.class);
                 return true;
             case R.id.action_settings:
-                Intent i = new Intent(this, Preferences.class);
-                startActivity(i);
+                AnswerHandle.Answer("Settings");
+                startActivity(new Intent(this, Preferences.class));
                 return true;
         }
         return true;
+    }
+
+    public void onEvent(ErrorMessage message){
+        ErrorHandle.getInstance().informUser(this, message.getMessage());
+        EventBus.getDefault().unregister(this);
     }
 }

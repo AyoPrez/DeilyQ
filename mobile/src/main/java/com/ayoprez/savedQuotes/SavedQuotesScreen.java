@@ -2,19 +2,18 @@ package com.ayoprez.savedQuotes;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.Window;
 
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.QuoteGet;
 import com.ayoprez.userProfile.ProfileScreen;
@@ -29,14 +28,12 @@ import de.greenrobot.event.EventBus;
  * Created by AyoPrez on 24/05/15.
  */
 public class SavedQuotesScreen extends AbstractBaseMainActivity {
+    private static final String LOG_TAG = SavedQuotesScreen.class.getSimpleName();
 
-    //Probar a poner el context en el Abstract
-
-    private Toolbar toolbar;
     protected Dialog loadDialog;
-    private RecyclerView savedQuotesRecyclerView;
-    private RecyclerView.Adapter recyclerViewAdapter;
-    private RecyclerView.LayoutManager recyclerViewLayoutManager;
+    protected RecyclerView savedQuotesRecyclerView;
+    protected RecyclerView.Adapter recyclerViewAdapter;
+    protected RecyclerView.LayoutManager recyclerViewLayoutManager;
 
     @Bind(R.id.viewStub_no_internet)
     ViewStub viewStubNoInternet;
@@ -52,17 +49,12 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
 
         initToolbar();
 
-        if(isNetworkAvailable()) {
-            getSavedQuotes(getUserId());
-        }else{
-            viewStubNoInternet.setVisibility(View.VISIBLE);
+        try {
+            getSavedQuotes(this, getUserId());
+        } catch (Exception e) {
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
+            e.printStackTrace();
         }
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     @Override
@@ -96,38 +88,43 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         savedQuotesRecyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    private void initToolbar(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    @Override
+    protected void initToolbar(){
+        super.initToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backToProfileIntent();
+                goToNewScreen(ProfileScreen.class);
             }
         });
     }
 
-    private void backToProfileIntent(){
-        Intent intent = new Intent(this, ProfileScreen.class);
-        startActivity(intent);
-        finish();
+    protected void getSavedQuotes(Context context, int userId){
+        if(isNetworkAvailable()) {
+            new QuoteGet().getUserQuotes(context, userId);
+            createLoadDialog();
+        }else{
+            viewStubNoInternet.setVisibility(View.VISIBLE);
+        }
     }
 
-    protected int getUserId(){
-        return Integer.valueOf(sessionManager.getUserDetails().get("id"));
-    }
-
-    protected void getSavedQuotes(int userId){
-        new QuoteGet().getUserQuotes(userId);
-        createLoadDialog();
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public void onEvent(ArrayList<SavedQuotes> savedQuotes){
-        initRecyclerView(savedQuotes);
-        cancelDialog();
-        EventBus.getDefault().unregister(this);
+        if(savedQuotes.size() > 0) {
+            initRecyclerView(savedQuotes);
+            cancelDialog();
+        }else{
+            viewStubNoInternet.setLayoutResource(R.layout.empty_list_layout);
+            viewStubNoInternet.setVisibility(View.VISIBLE);
+            cancelDialog();
+        }
     }
 }

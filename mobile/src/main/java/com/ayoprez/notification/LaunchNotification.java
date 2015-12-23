@@ -5,10 +5,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.QuoteScreen;
 import com.ayoprez.deilyquote.R;
 
@@ -20,6 +22,7 @@ import deilyquote.UserQuotes;
  */
 public class LaunchNotification extends Application{
 
+    private static final String LOG_TAG = LaunchNotification.class.getSimpleName();
     private Context context;
 
     public LaunchNotification(Context context){
@@ -34,7 +37,10 @@ public class LaunchNotification extends Application{
         Log.e("Notification", "Notification up");
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.deilyquote_notification_icon)
+                .setColor(context.getResources().getColor(R.color.ColorPrimary))
+                .setSmallIcon(
+                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ?
+                                R.drawable.icon_notification_loll : R.drawable.deilyquote_notification_icon)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.notification_text));
 
@@ -61,8 +67,8 @@ public class LaunchNotification extends Application{
             launchNotification(context, quote);
             EventBus.getDefault().unregister(this);
         }catch (Exception e){
-            Log.e("NotificationException", "Error: " + e.getMessage());
-            //Crashlytics
+            ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
         }
     }
 

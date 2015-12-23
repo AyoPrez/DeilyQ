@@ -14,41 +14,36 @@ import java.util.ArrayList;
 public class Language {
 
 	private Dialog Dialog;
-	private Context ctx;
 	private LanguageDialogAdapter Adapter;
 	private ListView Language_List;
 	
 	
-	public Language(Context context){
-		this.ctx = context;
-		
-		this.Dialog = new Dialog(ctx);
+	public Language(final Context context){
+		this.Dialog = new Dialog(context);
 		this.Dialog.setContentView(R.layout.dialog_language);
 		this.Dialog.setTitle(R.string.button_language);
 
 		final ArrayList<String> Languages = new ArrayList<>();
-		Languages.add(ctx.getString(R.string.Spanish));
-		Languages.add(ctx.getString(R.string.English));
-		Languages.add(ctx.getString(R.string.German));
-		Languages.add(ctx.getString(R.string.Italian));
-		Languages.add(ctx.getString(R.string.French));
+		Languages.add(context.getString(R.string.Spanish));
+		Languages.add(context.getString(R.string.English));
+		Languages.add(context.getString(R.string.German));
+		Languages.add(context.getString(R.string.Italian));
+		Languages.add(context.getString(R.string.French));
 
 		this.Language_List = (ListView)Dialog.findViewById(R.id.LV_Language);
-//		this.Adapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_list_item_1, Languages);
-		this.Adapter = new LanguageDialogAdapter(ctx, Languages);
+		this.Adapter = new LanguageDialogAdapter(context, Languages);
 		this.Language_List.setAdapter(Adapter);
-
 
 		this.Language_List.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				((NewMomentActivity)ctx).Language_Text(Languages.get(position));
+				((NewMomentActivity)context).Language_Text(Languages.get(position));
 				Dialog.dismiss();
 			}
 		});
-		
+
 		Dialog.show();
 	}
-	
+
 }
