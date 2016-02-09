@@ -3,6 +3,7 @@ package com.ayoprez.deilyquote;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,6 +15,9 @@ import com.ayoprez.restfulservice.QuoteSet;
 import com.ayoprez.utils.SpeakerHelper;
 
 import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -104,17 +108,13 @@ public class QuoteScreen extends AbstractBaseMainActivity {
         }
     }
 
-    //TODO Fix the progress bar. It stops
-    public void onEvent(final Boolean ready){
+    private static final ScheduledExecutorService worker =
+            Executors.newSingleThreadScheduledExecutor();
 
-        Thread thread = new Thread() {
-            @Override
+    public void onEventBackgroundThread(final Boolean ready){
+
+        Runnable task = new Runnable() {
             public void run() {
-                try {
-                    Thread.sleep(8000);
-                } catch (InterruptedException e) {
-                    ErrorHandle.getInstance().Error(LOG_TAG, e);
-                }
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -131,6 +131,6 @@ public class QuoteScreen extends AbstractBaseMainActivity {
             }
         };
 
-        thread.run();
+        worker.schedule(task, 8, TimeUnit.SECONDS);
     }
 }
