@@ -50,8 +50,13 @@ public class QuoteSet {
 
             @Override
             public void failure(RetrofitError error) {
-                ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
-                ErrorHandle.getInstance().Error(LOG_TAG, error);
+                //FIXME Temporal fix. In the future, replace retrofit for okhttp (or last retrofit version)
+                if(error.getCause().toString().equals("java.io.EOFException")) {
+                    userAPI.postUserQuote(id_u, id_word, this);
+                }else{
+                    ErrorHandle.getInstance().informUser(context, context.getString(R.string.errorDefault));
+                    ErrorHandle.getInstance().Error(LOG_TAG, error);
+                }
             }
         });
     }
