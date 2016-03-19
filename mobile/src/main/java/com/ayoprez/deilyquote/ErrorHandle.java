@@ -7,10 +7,12 @@ import android.util.Log;
 import com.ayoprez.utils.Utils;
 import com.crashlytics.android.Crashlytics;
 
+import io.fabric.sdk.android.Fabric;
+
 /**
  * Created by AyoPrez on 10.10.15.
  */
-public class ErrorHandle {
+public class ErrorHandle extends AbstractBaseMainActivity{
 
     public static ErrorHandle getInstance(){
         return new ErrorHandle();
@@ -19,9 +21,10 @@ public class ErrorHandle {
     public void Error(String where, Throwable error){
         Log.e(where, error.toString());
 
-        Crashlytics.getInstance().core.getIdentifier();
-        Crashlytics.getInstance().core.logException(error);
-        Crashlytics.getInstance().core.log(where + " - " + error.toString());
+        if(Fabric.isInitialized()) {
+            Crashlytics.getInstance().core.getIdentifier();
+            Crashlytics.getInstance().core.log(where + " - " + error.toString());
+        }
     }
 
     public void informUser(Context context, String message){

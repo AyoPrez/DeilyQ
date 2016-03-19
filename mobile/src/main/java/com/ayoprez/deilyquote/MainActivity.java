@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemLongClick;
 import de.greenrobot.event.EventBus;
+import fr.nicolaspomepuy.discreetapprate.AppRate;
 
 public class MainActivity extends AbstractBaseMainActivity {
 

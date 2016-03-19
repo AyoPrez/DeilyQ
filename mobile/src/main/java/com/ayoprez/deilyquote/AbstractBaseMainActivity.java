@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.ayoprez.login.SessionManager;
 import com.ayoprez.utils.Keys;
@@ -19,6 +20,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by AyoPrez on 23/08/15.
  */
 public abstract class AbstractBaseMainActivity extends AppCompatActivity{
+    public static final String TAG = AbstractBaseMainActivity.class.getSimpleName();
 
     protected SessionManager sessionManager;
     protected Toolbar toolbar;
@@ -30,6 +32,7 @@ public abstract class AbstractBaseMainActivity extends AppCompatActivity{
                 Keys.TWITTER_KEY + getString(R.string.TW_K),
                 Keys.TWITTER_SECRET + getString(R.string.TW_S));
         Fabric.with(this, new Crashlytics(), new Twitter(authConfig));
+
         this.sessionManager = new SessionManager(this);
     }
 
@@ -38,8 +41,12 @@ public abstract class AbstractBaseMainActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
     }
 
-    protected int getUserId() throws Exception{
-        return (sessionManager != null) ? Integer.valueOf(sessionManager.getUserDetails().get("id")) : 0;
+    protected int getUserId(){
+        if(sessionManager != null && sessionManager.getUserDetails().get("id") != null){
+            return Integer.valueOf(sessionManager.getUserDetails().get("id"));
+        }else{
+            return 0;
+        }
     }
 
     protected String getUserName(){

@@ -12,8 +12,13 @@ import android.view.WindowManager;
 import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.ErrorMessage;
 import com.ayoprez.deilyquote.MainActivity;
+import com.ayoprez.savedQuotes.SavedQuotes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import deilyquote.UserQuotes;
 
 public class Utils {
 	private static final String LOG_TAG = Utils.class.getSimpleName();
@@ -88,5 +93,29 @@ public class Utils {
 	public static int TakeMinuteFromTime(String time){
 		String minute = time.substring(3, 5);
 		return Integer.valueOf(minute);
+	}
+
+	public static ArrayList<SavedQuotes> convertUserQuotesToSavedQuotes(List<UserQuotes> userQuotes){
+		ArrayList<SavedQuotes> savedQuotes = new ArrayList<>();
+
+		for (UserQuotes quote : userQuotes){
+			savedQuotes.add(new SavedQuotes(quote.getId().intValue(), quote.getQuote(), quote.getAuthor(),
+					quote.getPersonality(), quote.getPersonality2(), quote.getPersonality3(),
+					quote.getLanguage()));
+		}
+
+		return savedQuotes;
+	}
+
+	public static ArrayList<UserQuotes> convertSavedQuotesToUserQuotes(List<SavedQuotes> savedQuotes){
+		ArrayList<UserQuotes> userQuotes = new ArrayList<>();
+
+		for (SavedQuotes quote : savedQuotes){
+			userQuotes.add(new UserQuotes((long)quote.getId_Q(), quote.getLanguage(), quote.getPersonality(),
+					quote.getPersonality2(), quote.getPersonality3(), quote.getQuote(),
+					quote.getAuthor()));
+		}
+
+		return userQuotes;
 	}
 }

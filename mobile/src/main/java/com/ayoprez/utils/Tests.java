@@ -25,4 +25,19 @@ public class Tests {
             e.printStackTrace();
         }
     }
+
+    public void testNotificationError(Context context, String error){
+        Long id = new Long(1);
+        String quote = "Error: " + error;
+        String author = "Error";
+        String language = "spanish";
+        String personality = "Emprendedor";
+
+        try {
+            new LaunchNotification(context).launchNotification(context, new UserQuotes(id, language, personality, null, null, quote, author));
+        } catch (Exception e) {
+            Log.e("DeilyQuoteError", "NotificationButton  " + e);
+            e.printStackTrace();
+        }
+    }
 }

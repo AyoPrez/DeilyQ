@@ -31,6 +31,13 @@ public class UserQuotes {
         this.author = author;
     }
 
+    public UserQuotes(Long id, String quote, String author, String language){
+        this.id = id;
+        this.language = language;
+        this.quote = quote;
+        this.author = author;
+    }
+
     public Long getId() {
         return id;
     }

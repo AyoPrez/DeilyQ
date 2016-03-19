@@ -2,10 +2,12 @@ package com.ayoprez.restfulservice;
 
 import android.content.Context;
 
+import com.ayoprez.database.FavQuotesRepository;
 import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.notification.LaunchNotification;
 import com.ayoprez.savedQuotes.SavedQuotes;
+import com.ayoprez.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -83,6 +85,7 @@ public class QuoteGet {
         quoteAPI.getUserQuotes(id_u, new Callback<ArrayList<SavedQuotes>>() {
             @Override
             public void success(ArrayList<SavedQuotes> savedQuotes, Response response) {
+                FavQuotesRepository.insertArrayList(context, Utils.convertSavedQuotesToUserQuotes(savedQuotes));
                 EventBus.getDefault().post(savedQuotes);
             }
 

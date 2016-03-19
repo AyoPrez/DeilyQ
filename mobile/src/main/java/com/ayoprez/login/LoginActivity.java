@@ -23,6 +23,7 @@ public class LoginActivity extends AbstractBaseMainActivity {
     public TwitterLoginButton twitterLoginButton;
     private FacebookLogin facebookLogin = new FacebookLogin(this);
     private TwitterLogin twitterLogin = new TwitterLogin(this);
+    private GoogleLogin googleLogin = new GoogleLogin(this);
 
     @OnClick(R.id.login_continue)
     void loginContinue(){
@@ -49,6 +50,7 @@ public class LoginActivity extends AbstractBaseMainActivity {
 
         facebookLogin.facebookLogin();
         twitterLogin.twitterLogin();
+        googleLogin.googleLogin();
     }
 
     @Override
@@ -57,6 +59,8 @@ public class LoginActivity extends AbstractBaseMainActivity {
         twitterLoginButton.onActivityResult(requestCode, resultCode, data);
 
         facebookLogin.callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        googleLogin.activityResult(requestCode, data);
     }
 
     public void startSession(Context applicationContext, User user){

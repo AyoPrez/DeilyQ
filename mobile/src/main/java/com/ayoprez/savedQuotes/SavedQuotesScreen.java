@@ -12,17 +12,21 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.Window;
 
+import com.ayoprez.database.FavQuotesRepository;
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.ErrorHandle;
 import com.ayoprez.deilyquote.R;
 import com.ayoprez.restfulservice.QuoteGet;
 import com.ayoprez.userProfile.ProfileScreen;
+import com.ayoprez.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import deilyquote.UserQuotes;
 
 /**
  * Created by AyoPrez on 24/05/15.
@@ -75,7 +79,9 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
     }
 
     private void cancelDialog(){
-        getDialog().cancel();
+        if(getDialog() != null) {
+            getDialog().cancel();
+        }
     }
 
     private void initRecyclerView(ArrayList<SavedQuotes> savedQuotes){
@@ -107,7 +113,11 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
             new QuoteGet().getUserQuotes(context, userId);
             createLoadDialog();
         }else{
-            viewStubNoInternet.setVisibility(View.VISIBLE);
+            if(FavQuotesRepository.getRowsCount(this) > 0) {
+                EventBus.getDefault().post(Utils.convertUserQuotesToSavedQuotes(FavQuotesRepository.getAllQuotes(this)));
+            }else{
+                viewStubNoInternet.setVisibility(View.VISIBLE);
+            }
         }
     }
 

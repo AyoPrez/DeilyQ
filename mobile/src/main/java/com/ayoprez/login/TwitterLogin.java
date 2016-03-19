@@ -55,7 +55,7 @@ public class TwitterLogin {
         //Add the icon in the desired position
         twitterButton.setCompoundDrawables(null, null, null, null);
         twitterButton.setCompoundDrawablePadding(0);
-        twitterButton.setPadding(10, 30, 10, 30);
+        twitterButton.setPadding(10, 20, 10, 20);
     }
 
     public void logoutTwitter(){

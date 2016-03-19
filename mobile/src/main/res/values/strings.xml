@@ -37,7 +37,7 @@
     <string name="topic10">Righteous</string>
 
     <!-- Login activity texts-->
-    <string name="Login_Continue">Continue wituhout login</string>
+    <string name="Login_Continue">Continue without login</string>
 
     <!-- Time -->
     <string name="button_time_accept">Accept the moment</string>
@@ -88,7 +88,7 @@
     <string name="info">Info</string>
     <string name="info_message">App made fondly by AyoPrez. \n\n
                                 For more information, visit the website </string>
-    <string name="versionName">0.1</string>
+    <string name="versionName">0.2</string>
     <string name="title_activity_settings">Settings</string>
     
     <string name="legal_title">Legal and contact</string>

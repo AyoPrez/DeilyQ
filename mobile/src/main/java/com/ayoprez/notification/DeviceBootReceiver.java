@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.ayoprez.database.UserMomentsRepository;
 import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.utils.Tests;
+
+import junit.framework.Test;
 
 import java.util.List;
 
@@ -29,9 +32,13 @@ public class DeviceBootReceiver extends BroadcastReceiver {
     public void reSchedule(Context context){
 
         List<UserMoments> dataFromDatabase = UserMomentsRepository.getAllMoments(context);
-
-        for(UserMoments userMoments : dataFromDatabase){
-            new StartAndCancelAlarmManager(context, userMoments);
+        try{
+            for(UserMoments userMoments : dataFromDatabase){
+                new StartAndCancelAlarmManager(context, userMoments).startAlarmManager(userMoments.getTime());
+            }
+        }catch(Exception e){
+            new Tests().testNotificationError(context, e.toString());
+            ErrorHandle.getInstance().Error(LOG_TAG, e);
         }
     }
 }
