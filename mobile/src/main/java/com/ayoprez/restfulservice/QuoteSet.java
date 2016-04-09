@@ -15,9 +15,9 @@ import retrofit.client.Response;
  * Created by AyoPrez on 19/08/15.
  */
 public class QuoteSet {
-    public static final String ENDPOINT = "http://deilyquote.ayoprez.com/api/index.php/";
-
     private static final String LOG_TAG = QuoteSet.class.getSimpleName();
+
+    public static final String ENDPOINT = "http://deilyquote.ayoprez.com/api/index.php/";
 
     private UserAPI userAPI;
     private Context context;

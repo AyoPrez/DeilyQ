@@ -41,6 +41,8 @@
     <string name="Login_TwitterButton">Twitter</string>
     <string name="Login_GoogleButton">Google</string>
     <string name="Login_Continue">Continuar sin iniciar sesión</string>
+    <string name="login_dialog_text">Si decides registrate a través de las redes sociales,tendrás acceso a funciones extras, como poder guardar todas las frases que quieras conservar y revisar en el futuro</string>
+    <string name="login_dialog_title">Información</string>
 
     <!-- Time -->
     <string name="button_time_accept">Aceptar momento</string>

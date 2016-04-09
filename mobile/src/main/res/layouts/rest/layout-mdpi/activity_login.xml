@@ -8,11 +8,11 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:id="@+id/imageView"
         android:src="@drawable/deilyquote_icon"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:layout_gravity="center_horizontal" />
 
     <RelativeLayout
@@ -73,8 +73,8 @@
             android:gravity="bottom|center"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
             android:layout_below="@id/login_continue"/>
     </RelativeLayout>
 </RelativeLayout>

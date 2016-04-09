@@ -43,6 +43,9 @@
     <string name="Login_GoogleButton">Google</string>
     <string name="Login_Continue">Continua senza iniziare sessione</string>
 
+    <string name="login_dialog_text">Se si decide di registrare attraverso i social network, si avrà accesso alle funzioni extra, come salvare tutte le citazioni che si desidera rivedere in futuro.</string>
+    <string name="login_dialog_title">Informazioni</string>
+
     <!-- Time -->
     <string name="button_time_accept">Accetta il momento</string>
 

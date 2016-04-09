@@ -38,6 +38,8 @@
 
     <!-- Login activity texts-->
     <string name="Login_Continue">Continue without login</string>
+    <string name="login_dialog_text">If you decide to register through social networks, you will have access to extra features like save all the quotes you want to review in the future</string>
+    <string name="login_dialog_title">Information</string>
 
     <!-- Time -->
     <string name="button_time_accept">Accept the moment</string>

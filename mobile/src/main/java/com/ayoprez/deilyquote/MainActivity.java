@@ -11,7 +11,7 @@ import com.ayoprez.database.CreateDatabase;
 import com.ayoprez.login.LoginActivity;
 import com.ayoprez.newMoment.NewMomentActivity;
 import com.ayoprez.preferences.Preferences;
-import com.ayoprez.userProfile.ProfileScreen;
+import com.ayoprez.savedQuotes.SavedQuotesScreen;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -83,7 +83,7 @@ public class MainActivity extends AbstractBaseMainActivity {
         switch (item.getItemId()){
             case R.id.action_signIn:
                 AnswerHandle.Answer("SignIn");
-                goToNewScreen(!sessionManager.isLoggedIn() ? LoginActivity.class : ProfileScreen.class);
+                goToNewScreen(!sessionManager.isLoggedIn() ? LoginActivity.class : SavedQuotesScreen.class);
                 return true;
             case R.id.action_settings:
                 AnswerHandle.Answer("Settings");

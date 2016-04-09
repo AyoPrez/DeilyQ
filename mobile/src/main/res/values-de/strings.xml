@@ -42,6 +42,9 @@
     <string name="Login_GoogleButton">Google</string>
     <string name="Login_Continue">Weiter ohne Anmeldung</string>
 
+    <string name="login_dialog_text"></string>
+    <string name="login_dialog_title">Information</string>
+
     <!-- Time -->
     <string name="button_time_accept">Akzeptieren den Moment</string>
 

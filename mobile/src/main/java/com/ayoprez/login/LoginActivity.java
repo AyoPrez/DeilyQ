@@ -1,6 +1,7 @@
 package com.ayoprez.login;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import com.ayoprez.deilyquote.AbstractBaseMainActivity;
 import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
+import com.ayoprez.utils.Utils;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.ButterKnife;
@@ -24,6 +26,11 @@ public class LoginActivity extends AbstractBaseMainActivity {
     private FacebookLogin facebookLogin = new FacebookLogin(this);
     private TwitterLogin twitterLogin = new TwitterLogin(this);
     private GoogleLogin googleLogin = new GoogleLogin(this);
+
+    @OnClick(R.id.terms_link)
+    void termsLink(){
+        startActivity(new Intent(this, LegalActivity.class));
+    }
 
     @OnClick(R.id.login_continue)
     void loginContinue(){
@@ -51,6 +58,27 @@ public class LoginActivity extends AbstractBaseMainActivity {
         facebookLogin.facebookLogin();
         twitterLogin.twitterLogin();
         googleLogin.googleLogin();
+
+        showDialogOnce();
+    }
+
+    private void showDialogOnce(){
+        boolean firstrun = this.getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrunQ", true);
+        if (firstrun){
+            Utils.Create_Dialog_DoNotFinishActivity(this, getString(R.string.login_dialog_text),
+                    "Ok", getString(R.string.login_dialog_title), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Save the state
+            this.getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                    .edit()
+                    .putBoolean("firstrunQ", false)
+                    .commit();
+        }
     }
 
     @Override

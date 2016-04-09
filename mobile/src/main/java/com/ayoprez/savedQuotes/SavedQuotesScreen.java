@@ -2,31 +2,35 @@ package com.ayoprez.savedQuotes;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.view.Window;
 
 import com.ayoprez.database.FavQuotesRepository;
 import com.ayoprez.deilyquote.AbstractBaseMainActivity;
+import com.ayoprez.deilyquote.AnswerHandle;
 import com.ayoprez.deilyquote.ErrorHandle;
+import com.ayoprez.deilyquote.MainActivity;
 import com.ayoprez.deilyquote.R;
+import com.ayoprez.preferences.Preferences;
 import com.ayoprez.restfulservice.QuoteGet;
-import com.ayoprez.userProfile.ProfileScreen;
 import com.ayoprez.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import deilyquote.UserQuotes;
 
 /**
  * Created by AyoPrez on 24/05/15.
@@ -95,6 +99,36 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_word_screen, menu);
+
+        MenuItem loginItem = menu.findItem(R.id.action_signIn);
+        if(sessionManager.isLoggedIn()){
+            loginItem.setTitle(getString(R.string.action_logout));
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_signIn:
+                AnswerHandle.Answer("Logout");
+                sessionManager.logoutUser();
+                finish();
+                return true;
+            case R.id.action_settings:
+                AnswerHandle.Answer("Settings");
+                Intent i = new Intent(this, Preferences.class);
+                startActivity(i);
+                return true;
+        }
+        return true;
+    }
+
+    @Override
     protected void initToolbar(){
         super.initToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,7 +137,7 @@ public class SavedQuotesScreen extends AbstractBaseMainActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToNewScreen(ProfileScreen.class);
+                goToNewScreen(MainActivity.class);
             }
         });
     }
