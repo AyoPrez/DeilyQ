@@ -42,7 +42,7 @@
     <string name="Login_GoogleButton">Google</string>
     <string name="Login_Continue">Weiter ohne Anmeldung</string>
 
-    <string name="login_dialog_text"></string>
+    <string name="login_dialog_text">Wenn Sie sich entscheiden, über soziale Netzwerke zu registrieren, erhalten Sie Zugriff auf zusätzliche Funktionen wie Speichern Sie alle Zitate, um Sie in der Zukunft zu überprüfen</string>
     <string name="login_dialog_title">Information</string>
 
     <!-- Time -->
